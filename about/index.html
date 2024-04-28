@@ -68,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#til-todai-i-learned" class="md-skip">
+        <a href="#til-today-i-learned" class="md-skip">
           Skip to content
         </a>
       
@@ -292,10 +292,20 @@
                   
 
 
-<h1 id="til-todai-i-learned">TIL - Todai I Learned</h1>
+<h1 id="til-today-i-learned">TIL - Today I Learned</h1>
 <h2 id="to-deploy-a-personal-site-on-github-pages-with-mkdocs">To Deploy a personal site on GitHub Pages with MKdocs</h2>
-<p>Don't forget the command
-    mkdocs gh-deploy --config-file ../ghpages/mkdocs.yml --remote-branch main</p>
+<p>Don't forget the command. It needs to be executes from the folder, where you GitHub Pages are. You should create a folder structure accordingly. </p>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>|-- ghpages (mkdocs folder)
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    |-- docs
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>        |-- about.md
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>        `-- index.md
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    |-- mkdocs.yml
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    `-- venv
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>|-- project.github.io
+</span></code></pre></div>
+ <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 9h2.31l.32-3h2l-.32 3h2l.32-3h2l-.32 3H15v2h-1.9l-.2 2H15v2h-2.31l-.32 3h-2l.32-3h-2l-.32 3h-2l.32-3H5v-2h1.9l.2-2H5V9m4.1 2-.2 2h2l.2-2M19 6h-2v8h2m0 2h-2v2h2Z"/></svg></span> execute the following bash command</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="w">    </span>mkdocs<span class="w"> </span>gh-deploy<span class="w"> </span>--config-file<span class="w"> </span>../ghpages/mkdocs.yml<span class="w"> </span>--remote-branch<span class="w"> </span>main
+</span></code></pre></div>
 
 
 
@@ -342,7 +352,7 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../assets/javascripts/bundle.dd8806f2.min.js"></script>
