@@ -226,9 +226,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#to-deploy-a-personal-site-on-github-pages-with-mkdocs" class="md-nav__link">
+  <a href="#deploy-a-personal-site-on-github-pages-with-mkdocs" class="md-nav__link">
     <span class="md-ellipsis">
-      To Deploy a personal site on GitHub Pages with MkDocs
+      Deploy a personal site on GitHub Pages with MkDocs
     </span>
   </a>
   
@@ -287,9 +287,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#to-deploy-a-personal-site-on-github-pages-with-mkdocs" class="md-nav__link">
+  <a href="#deploy-a-personal-site-on-github-pages-with-mkdocs" class="md-nav__link">
     <span class="md-ellipsis">
-      To Deploy a personal site on GitHub Pages with MkDocs
+      Deploy a personal site on GitHub Pages with MkDocs
     </span>
   </a>
   
@@ -329,18 +329,26 @@
 
 
 <h1 id="til-today-i-learned">TIL - Today I Learned</h1>
-<h2 id="to-deploy-a-personal-site-on-github-pages-with-mkdocs">To Deploy a personal site on GitHub Pages with MkDocs</h2>
+<h2 id="deploy-a-personal-site-on-github-pages-with-mkdocs">Deploy a personal site on GitHub Pages with MkDocs</h2>
 <p>You should create a folder structure like the following. Your folder with the MkDocs
 project <strong>is not</strong> in the same folder as your <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z"/></svg></span> <strong>GitHub</strong> Pages folder. </p>
 <p><div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>|-- ghpages (MkDocs folder)
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    |-- docs
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>        |-- about.md
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>        `-- index.md
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    |-- mkdocs.yml
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    `-- venv
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>|-- project.github.io (GitHub Pages folder)
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>        |-- img
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>             |-- favicon.ico
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>             `-- logo.png
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        |-- stylesheets
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>          `-- extra.css
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>        |-- about.md
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>        `-- index.md
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    |-- mkdocs.yml
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>|-- venv
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>|-- project.github.io (GitHub Pages folder)
 </span></code></pre></div>
- <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 9h2.31l.32-3h2l-.32 3h2l.32-3h2l-.32 3H15v2h-1.9l-.2 2H15v2h-2.31l-.32 3h-2l.32-3h-2l-.32 3h-2l.32-3H5v-2h1.9l.2-2H5V9m4.1 2-.2 2h2l.2-2M19 6h-2v8h2m0 2h-2v2h2Z"/></svg></span> execute the following bash command from the <strong>project.github.io</strong> folder!</p>
+I did the <code>venv</code> folder in the root of these two main folders. Like this I can run the <code>mkdocs serve</code>
+command in the MkDocs folder and the following deploy command in the GitHub Pages folder within the 
+same virtual environment. </p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 9h2.31l.32-3h2l-.32 3h2l.32-3h2l-.32 3H15v2h-1.9l-.2 2H15v2h-2.31l-.32 3h-2l.32-3h-2l-.32 3h-2l.32-3H5v-2h1.9l.2-2H5V9m4.1 2-.2 2h2l.2-2M19 6h-2v8h2m0 2h-2v2h2Z"/></svg></span> execute the following bash command from the <strong>project.github.io</strong> folder!</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>mkdocs<span class="w"> </span>gh-deploy<span class="w"> </span>--config-file<span class="w"> </span>../ghpages/mkdocs.yml<span class="w"> </span>--remote-branch<span class="w"> </span>main
 </span></code></pre></div>
 <h2 id="customize-the-fonts-in-mkdocs">Customize the fonts in MkDocs</h2>
