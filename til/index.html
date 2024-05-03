@@ -9,6 +9,8 @@
       
       
       
+        <link rel="prev" href="..">
+      
       
       
       <link rel="icon" href="../img/favicon.ico">
@@ -16,7 +18,7 @@
     
     
       
-        <title>TIL - Today I Learned - Dataflow Labs</title>
+        <title>TIL - Dataflow Labs</title>
       
     
     
@@ -37,10 +39,12 @@
         
         
         
-        <link rel="stylesheet" href="../assets/external/fonts.googleapis.com/css.49ea35f2.css">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="../assets/external/fonts.googleapis.com/css.823635ce.css">
+        <style>:root{--md-text-font:"Raleway";--md-code-font:"Roboto Mono"}</style>
       
     
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
     
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -57,7 +61,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -84,8 +88,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href=".." title="Dataflow Labs" class="md-header__button md-logo" aria-label="Dataflow Labs" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <img src="../img/dataflow-wave.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -102,7 +105,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              TIL - Today I Learned
+              TIL
             
           </span>
         </div>
@@ -142,8 +145,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="Dataflow Labs" class="md-nav__button md-logo" aria-label="Dataflow Labs" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <img src="../img/dataflow-wave.svg" alt="logo">
 
     </a>
     Dataflow Labs
@@ -175,18 +177,76 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../about.md" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    TIL
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
-    About
+    TIL
   </span>
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#to-deploy-a-personal-site-on-github-pages-with-mkdocs" class="md-nav__link">
+    <span class="md-ellipsis">
+      To Deploy a personal site on GitHub Pages with MKdocs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#customize-the-fonts-in-mkdocs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Customize the fonts in MkDocs
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -226,6 +286,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#customize-the-fonts-in-mkdocs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Customize the fonts in MkDocs
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -254,6 +323,38 @@
 </span></code></pre></div>
  <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 9h2.31l.32-3h2l-.32 3h2l.32-3h2l-.32 3H15v2h-1.9l-.2 2H15v2h-2.31l-.32 3h-2l.32-3h-2l-.32 3h-2l.32-3H5v-2h1.9l.2-2H5V9m4.1 2-.2 2h2l.2-2M19 6h-2v8h2m0 2h-2v2h2Z"/></svg></span> execute the following bash command from the <strong>project.github.io</strong> folder!</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>mkdocs<span class="w"> </span>gh-deploy<span class="w"> </span>--config-file<span class="w"> </span>../ghpages/mkdocs.yml<span class="w"> </span>--remote-branch<span class="w"> </span>main
+</span></code></pre></div>
+<h2 id="customize-the-fonts-in-mkdocs">Customize the fonts in MkDocs</h2>
+<p>It took me some time to figure out how to properly customize fonts. 
+In the <a href="https://squidfunk.github.io/mkdocs-material/setup/changing-the-fonts/">documentation</a> is only a very basic example. 
+So I add mine here. I like the Cinzel font a lot. But to have it all over the place would be a bit too much. It goes 
+very nice together with the Raleway font. So I have set this as the default in the theme:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>    theme:
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>        ...
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>        font:
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>            text: Raleway
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>            code: Roboto Mono 
+</span></code></pre></div></p>
+<p>Then I added the custom in the extra.css file, like described in the documentation. Here the full example:</p>
+<div class="language-css highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="w">    </span><span class="p">@</span><span class="k">font-face</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="nt">font-family</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Cinzel&quot;</span><span class="o">;</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="nt">font-style</span><span class="o">:</span><span class="w"> </span><span class="nt">normal</span><span class="o">;</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="nt">font-weight</span><span class="o">:</span><span class="w"> </span><span class="nt">400</span><span class="o">;</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="nt">font-display</span><span class="o">:</span><span class="w"> </span><span class="nt">fallback</span><span class="o">;</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="nt">src</span><span class="o">:</span><span class="w"> </span><span class="nt">url</span><span class="o">(</span><span class="nt">https</span><span class="o">://</span><span class="nt">fonts</span><span class="p">.</span><span class="nc">gstatic</span><span class="p">.</span><span class="nc">com</span><span class="o">/</span><span class="nt">s</span><span class="o">/</span><span class="nt">cinzel</span><span class="o">/</span><span class="nt">v23</span><span class="o">/</span><span class="nt">8vIJ7ww63mVu7gt79mT7</span><span class="p">.</span><span class="nc">woff2</span><span class="o">)</span><span class="w"> </span><span class="nt">format</span><span class="o">(</span><span class="s1">&#39;woff2&#39;</span><span class="o">);</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span><span class="nt">unicode-range</span><span class="o">:</span><span class="w"> </span><span class="nt">U</span><span class="o">+</span><span class="nt">0000-00FF</span><span class="o">,</span><span class="w"> </span><span class="nt">U</span><span class="o">+</span><span class="nt">0131</span><span class="o">,</span><span class="w"> </span><span class="nt">U</span><span class="o">+</span><span class="nt">0152-0153</span><span class="o">,</span><span class="w"> </span><span class="nt">U</span><span class="o">+</span><span class="nt">02BB-02BC</span><span class="o">,</span><span class="w"> </span><span class="nt">U</span><span class="o">+</span><span class="nt">02C6</span><span class="o">,</span><span class="w"> </span><span class="nt">U</span><span class="o">+</span><span class="nt">02DA</span><span class="o">,</span><span class="w"> </span><span class="nt">U</span><span class="o">+</span><span class="nt">02DC</span><span class="o">,</span><span class="w"> </span><span class="nt">U</span><span class="o">+</span><span class="nt">0304</span><span class="o">,</span><span class="w"> </span><span class="nt">U</span><span class="o">+</span><span class="nt">0308</span><span class="o">,</span><span class="w"> </span><span class="nt">U</span><span class="o">+</span><span class="nt">0329</span><span class="o">,</span><span class="w"> </span><span class="nt">U</span><span class="o">+</span><span class="nt">2000-206F</span><span class="o">,</span><span class="w"> </span><span class="nt">U</span><span class="o">+</span><span class="nt">2074</span><span class="o">,</span><span class="w"> </span><span class="nt">U</span><span class="o">+</span><span class="nt">20AC</span><span class="o">,</span><span class="w"> </span><span class="nt">U</span><span class="o">+</span><span class="nt">2122</span><span class="o">,</span><span class="w"> </span><span class="nt">U</span><span class="o">+</span><span class="nt">2191</span><span class="o">,</span><span class="w"> </span><span class="nt">U</span><span class="o">+</span><span class="nt">2193</span><span class="o">,</span><span class="w"> </span><span class="nt">U</span><span class="o">+</span><span class="nt">2212</span><span class="o">,</span><span class="w"> </span><span class="nt">U</span><span class="o">+</span><span class="nt">2215</span><span class="o">,</span><span class="w"> </span><span class="nt">U</span><span class="o">+</span><span class="nt">FEFF</span><span class="o">,</span><span class="w"> </span><span class="nt">U</span><span class="o">+</span><span class="nt">FFFD</span><span class="o">;</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">  </span><span class="p">.</span><span class="nc">md-typeset</span><span class="w"> </span><span class="nt">h1</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="k">font-weight</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="p">;</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">    </span><span class="k">letter-spacing</span><span class="p">:</span><span class="w"> </span><span class="mf">-.01</span><span class="kt">em</span><span class="p">;</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">    </span><span class="k">font-family</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Cinzel&quot;</span><span class="p">;</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">  </span><span class="p">.</span><span class="nc">md-header__topic</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">    </span><span class="k">font-weight</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="p">;</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">    </span><span class="k">letter-spacing</span><span class="p">:</span><span class="w"> </span><span class="mf">-.01</span><span class="kt">em</span><span class="p">;</span>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">    </span><span class="k">font-family</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Cinzel&quot;</span><span class="p">;</span>
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="w">  </span><span class="p">}</span>
 </span></code></pre></div>
 
 
