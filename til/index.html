@@ -228,7 +228,7 @@
         <li class="md-nav__item">
   <a href="#to-deploy-a-personal-site-on-github-pages-with-mkdocs" class="md-nav__link">
     <span class="md-ellipsis">
-      To Deploy a personal site on GitHub Pages with MKdocs
+      To Deploy a personal site on GitHub Pages with MkDocs
     </span>
   </a>
   
@@ -289,7 +289,7 @@
         <li class="md-nav__item">
   <a href="#to-deploy-a-personal-site-on-github-pages-with-mkdocs" class="md-nav__link">
     <span class="md-ellipsis">
-      To Deploy a personal site on GitHub Pages with MKdocs
+      To Deploy a personal site on GitHub Pages with MkDocs
     </span>
   </a>
   
@@ -329,15 +329,16 @@
 
 
 <h1 id="til-today-i-learned">TIL - Today I Learned</h1>
-<h2 id="to-deploy-a-personal-site-on-github-pages-with-mkdocs">To Deploy a personal site on GitHub Pages with MKdocs</h2>
-<p>Don't forget the command. It needs to be executes from the folder, where you GitHub Pages are. You should create a folder structure accordingly. </p>
-<p><div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>|-- ghpages (mkdocs folder)
+<h2 id="to-deploy-a-personal-site-on-github-pages-with-mkdocs">To Deploy a personal site on GitHub Pages with MkDocs</h2>
+<p>You should create a folder structure like the following. Your folder with the MkDocs
+project <strong>is not</strong> in the same folder as your <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z"/></svg></span> <strong>GitHub</strong> Pages folder. </p>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>|-- ghpages (MkDocs folder)
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    |-- docs
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>        |-- about.md
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>        `-- index.md
 </span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    |-- mkdocs.yml
 </span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    `-- venv
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>|-- project.github.io
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>|-- project.github.io (GitHub Pages folder)
 </span></code></pre></div>
  <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 9h2.31l.32-3h2l-.32 3h2l.32-3h2l-.32 3H15v2h-1.9l-.2 2H15v2h-2.31l-.32 3h-2l.32-3h-2l-.32 3h-2l.32-3H5v-2h1.9l.2-2H5V9m4.1 2-.2 2h2l.2-2M19 6h-2v8h2m0 2h-2v2h2Z"/></svg></span> execute the following bash command from the <strong>project.github.io</strong> folder!</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>mkdocs<span class="w"> </span>gh-deploy<span class="w"> </span>--config-file<span class="w"> </span>../ghpages/mkdocs.yml<span class="w"> </span>--remote-branch<span class="w"> </span>main
@@ -352,7 +353,7 @@ very nice together with the Raleway font. So I have set this as the default in t
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">        </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Raleway</span>
 </span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">        </span><span class="nt">code</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Roboto Mono</span><span class="w"> </span>
 </span></code></pre></div>
-<p>Then I added the custom in the extra.css file, like described in the documentation. Here the full example:</p>
+<p>Then I added the custom Cinzel font in the extra.css file, like described in the documentation. Here the full example:</p>
 <div class="language-css highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">@</span><span class="k">font-face</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="nt">font-family</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Cinzel&quot;</span><span class="o">;</span>
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="nt">font-style</span><span class="o">:</span><span class="w"> </span><span class="nt">normal</span><span class="o">;</span>
@@ -375,7 +376,7 @@ very nice together with the Raleway font. So I have set this as the default in t
 </span></code></pre></div>
 <h2 id="customize-the-header-shadow">Customize the header shadow</h2>
 <p>Once you got the drill, then it gets quite easy to customize the rest. I wanted to adjust the 
-header shadow. So just look up the css variabl in your browser console and adjust the extra.css
+header shadow. So just look up the css variable in your browser console and adjust the extra.css
 file accordingly. Like so:</p>
 <div class="language-css highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="p">.</span><span class="nc">md-header--shadow</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="k">box-shadow</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mf">.2</span><span class="kt">rem</span><span class="w"> </span><span class="mh">#060eeb</span><span class="n">bb</span><span class="p">,</span><span class="mi">0</span><span class="w"> </span><span class="mf">.2</span><span class="kt">rem</span><span class="w"> </span><span class="mf">.4</span><span class="kt">rem</span><span class="w"> </span><span class="mh">#0003</span><span class="p">;</span>
