@@ -23,6 +23,13 @@
     transition: transform .25s cubic-bezier(.1,.7,.1,1),box-shadow .25s;
   }
 
+.md-nav {
+    font-weight: 300;
+    letter-spacing: -.01em;
+    font-family: "Cinzel";
+}
+
+
   /*
   .custom-icon {
     font-size: 64px;
