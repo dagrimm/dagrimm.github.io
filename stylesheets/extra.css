@@ -18,6 +18,10 @@
     font-family: "Cinzel";
 }
 
+.md-header__topic:first-child {
+  font-weight: 300;
+}
+
 .md-header--shadow {
     box-shadow: 0 0 .2rem #060eebbb,0 .2rem .4rem #0003;
     transition: transform .25s cubic-bezier(.1,.7,.1,1),box-shadow .25s;
@@ -29,6 +33,13 @@
     font-family: "Cinzel";
 }
 
+.md-nav__title {
+  font-weight: 450;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-default-fg-color: hsla(var(--md-hue),15%,90%,0.56);
+}
 
   /*
   .custom-icon {
