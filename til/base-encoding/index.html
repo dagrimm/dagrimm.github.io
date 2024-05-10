@@ -9,10 +9,8 @@
       
       
       
-        <link rel="prev" href="../mkdocs-til/">
+        <link rel="prev" href="../env-til/">
       
-      
-        <link rel="next" href="../base-encoding/">
       
       
       <link rel="icon" href="../../img/favicon.ico">
@@ -20,7 +18,7 @@
     
     
       
-        <title>Env - Dataflow Labs</title>
+        <title>base64 encoding - Dataflow Labs</title>
       
     
     
@@ -72,7 +70,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#til-env" class="md-skip">
+        <a href="#til-base64-encoding" class="md-skip">
           Skip to content
         </a>
       
@@ -107,7 +105,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Env
+              base64 encoding
             
           </span>
         </div>
@@ -237,6 +235,27 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../env-til/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Env
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -249,68 +268,7 @@
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Env
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  <span class="md-ellipsis">
-    Env
-  </span>
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#load-all-variables-from-the-env-files" class="md-nav__link">
-    <span class="md-ellipsis">
-      Load all variables from the .env files
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../base-encoding/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -319,6 +277,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -351,23 +310,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#load-all-variables-from-the-env-files" class="md-nav__link">
-    <span class="md-ellipsis">
-      Load all variables from the .env files
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -381,14 +323,36 @@
                   
 
 
-<h1 id="til-env">TIL - Env</h1>
-<h2 id="load-all-variables-from-the-env-files">Load all variables from the .env files</h2>
-<p>I nearly every time have to look up this command. Often enough to give it
-an entry in the TIL pages here. </p>
-<p>It excludes commented lines. 
-<a href="https://stackoverflow.com/questions/19331497/set-environment-variables-from-file-of-key-value-pairs">From this StackOverflow entry</a></p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">export</span><span class="w"> </span><span class="k">$(</span>grep<span class="w"> </span>-v<span class="w"> </span><span class="s1">&#39;^#&#39;</span><span class="w"> </span>.env<span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="k">)</span>
+<h1 id="til-base64-encoding">TIL - base64 encoding</h1>
+<p>I often need to use base64 encoding, when sending around
+files via API or in some scenarios basic authentication
+header. Today I learned, that Python strings default to UTF-8
+and this is not directly encoded as bytes. Since the base64 encoder
+expects a byte like object, you can not do direct bas64 encoding like this:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">base64</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">string</span> <span class="o">=</span> <span class="s2">&quot;Hello world!&quot;</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">encoded</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
 </span></code></pre></div>
+<p>it will raise an error</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="ne">TypeError</span><span class="p">:</span> <span class="n">expected</span> <span class="nb">bytes</span><span class="p">,</span> <span class="ow">not</span> <span class="nb">str</span>
+</span></code></pre></div>
+<p>So, to solve this you need to encode UTF-8 to bytes. Usually you encode 
+Unicode to bytes, but Python has the built in string function <code>encode()</code>
+to do this directly. If not further specified it assumes UTF-8 as input</p>
+<p>Here are the <a href="https://docs.python.org/3/library/stdtypes.html#str.encode">docs</a></p>
+<p>So with this encoding to bytes, the base64 encoding will work:</p>
+<p><div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span> <span class="nn">base64</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">string</span> <span class="o">=</span> <span class="s2">&quot;Hello world!&quot;</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">encoded</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+</span></code></pre></div>
+This will set the encoded variable to <code>b'SGVsbG8gd29ybGQh'</code></p>
+<p>Also I learned that the <code>==</code> you often see in base64 encoded strings are
+padding characters to fill the zeros to the expected 6 bit chunks. Note that 
+ASCII uses 8 bit chunks but base64 uses 6 bit chunks. </p>
 
 
 
