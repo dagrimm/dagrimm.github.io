@@ -9,10 +9,8 @@
       
       
       
-        <link rel="prev" href="../env-til/">
+        <link rel="prev" href="../base-encoding/">
       
-      
-        <link rel="next" href="../locust/">
       
       
       <link rel="icon" href="../../img/favicon.ico">
@@ -20,7 +18,7 @@
     
     
       
-        <title>base64 encoding - Dataflow Labs</title>
+        <title>Locust - Dataflow Labs</title>
       
     
     
@@ -72,7 +70,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#til-base64-encoding" class="md-skip">
+        <a href="#til-locust" class="md-skip">
           Skip to content
         </a>
       
@@ -107,7 +105,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              base64 encoding
+              Locust
             
           </span>
         </div>
@@ -258,6 +256,27 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../base-encoding/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    base64 encoding
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -270,29 +289,18 @@
         
       
       
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
   
   <span class="md-ellipsis">
-    base64 encoding
+    Locust
   </span>
   
 
-      </a>
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../locust/" class="md-nav__link">
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -301,6 +309,35 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#load-tests-with-locust" class="md-nav__link">
+    <span class="md-ellipsis">
+      Load tests with Locust
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -333,6 +370,23 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#load-tests-with-locust" class="md-nav__link">
+    <span class="md-ellipsis">
+      Load tests with Locust
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -346,36 +400,28 @@
                   
 
 
-<h1 id="til-base64-encoding">TIL - base64 encoding</h1>
-<p>I often need to use base64 encoding, when sending around
-files via API or in some scenarios basic authentication
-header. Today I learned, that Python strings default to UTF-8
-and this is not directly encoded as bytes. Since the base64 encoder
-expects a byte like object, you can not do direct bas64 encoding like this:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">base64</span>
+<h1 id="til-locust">TIL - Locust</h1>
+<h2 id="load-tests-with-locust">Load tests with Locust</h2>
+<p>I found this very nice load test tool, which I instantly tried on my VPS.
+<a href="https://locust.io/">Locust</a>
+You can create load tests with Python and it comes with a very nice web UI.</p>
+<p>You can create a test as easy as this</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">locust</span> <span class="kn">import</span> <span class="n">HttpUser</span><span class="p">,</span> <span class="n">task</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">string</span> <span class="o">=</span> <span class="s2">&quot;Hello world!&quot;</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">encoded</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">class</span> <span class="nc">HelloWorldUser</span><span class="p">(</span><span class="n">HttpUser</span><span class="p">):</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="nd">@task</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="k">def</span> <span class="nf">hello_world</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/hello&quot;</span><span class="p">)</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/world&quot;</span><span class="p">)</span>
 </span></code></pre></div>
-<p>it will raise an error</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="ne">TypeError</span><span class="p">:</span> <span class="n">expected</span> <span class="nb">bytes</span><span class="p">,</span> <span class="ow">not</span> <span class="nb">str</span>
-</span></code></pre></div>
-<p>So, to solve this you need to encode UTF-8 to bytes. Usually you encode 
-Unicode to bytes, but Python has the built in string function <code>encode()</code>
-to do this directly. If not further specified it assumes UTF-8 as input</p>
-<p>Here are the <a href="https://docs.python.org/3/library/stdtypes.html#str.encode">docs</a></p>
-<p>So with this encoding to bytes, the base64 encoding will work:</p>
-<p><div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span> <span class="nn">base64</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">string</span> <span class="o">=</span> <span class="s2">&quot;Hello world!&quot;</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">encoded</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
-</span></code></pre></div>
-This will set the encoded variable to <code>b'SGVsbG8gd29ybGQh'</code></p>
-<p>Also I learned that the <code>==</code> you often see in base64 encoded strings are
-padding characters to fill the zeros to the expected 6 bit chunks. Note that 
-ASCII uses 8 bit chunks but base64 uses 6 bit chunks. </p>
+<p>You give the base URL in the web UI and you just can instantly start the 
+loadtest. I found out that for my little VPS it could go up to 110 rps for 
+the EDI converter service I have, which I found quite impressive. 
+It would be even possible to further improve this, so I also found out
+that you can get really far with a single VPS instance. I chose the EDI service
+since you need to create a login token and it will store the usage in the
+database. 
+For the static page of dataflow-labs it got up to ~1000 rps!</p>
 
 
 
