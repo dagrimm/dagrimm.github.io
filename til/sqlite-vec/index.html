@@ -9,10 +9,8 @@
       
       
       
-        <link rel="prev" href="../locust/">
+        <link rel="prev" href="../geopython/">
       
-      
-        <link rel="next" href="../tldr-man/">
       
       
       <link rel="icon" href="../../img/favicon.ico">
@@ -20,7 +18,7 @@
     
     
       
-        <title>MIT the missing semester - Dataflow Labs</title>
+        <title>Semantic Vector Search with SQLite - Dataflow Labs</title>
       
     
     
@@ -113,7 +111,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#til-mit-the-missing-semester" class="md-skip">
+        <a href="#til-semantic-search-with-sqlite" class="md-skip">
           Skip to content
         </a>
       
@@ -148,7 +146,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              MIT the missing semester
+              Semantic Vector Search with SQLite
             
           </span>
         </div>
@@ -354,32 +352,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    MIT the missing semester
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../mit-missing/" class="md-nav__link">
         
   
   
@@ -390,35 +366,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#mit-has-a-collection-of-pages-about-efficiency-in-your-dev-environment" class="md-nav__link">
-    <span class="md-ellipsis">
-      MIT has a collection of pages about efficiency in your dev environment
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -474,10 +421,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../sqlite-vec/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Semantic Vector Search with SQLite
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -488,6 +457,35 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#use-sqlite-vec-as-vector-database-for-semantic-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use SQLite vec as vector database for semantic search
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -527,9 +525,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#mit-has-a-collection-of-pages-about-efficiency-in-your-dev-environment" class="md-nav__link">
+  <a href="#use-sqlite-vec-as-vector-database-for-semantic-search" class="md-nav__link">
     <span class="md-ellipsis">
-      MIT has a collection of pages about efficiency in your dev environment
+      Use SQLite vec as vector database for semantic search
     </span>
   </a>
   
@@ -551,13 +549,19 @@
 
 
 
-<h1 id="til-mit-the-missing-semester">TIL - MIT the missing semester</h1>
-<h2 id="mit-has-a-collection-of-pages-about-efficiency-in-your-dev-environment">MIT has a collection of pages about efficiency in your dev environment</h2>
-<p>It seems even on some universities they take for granted, that you have an 
-idea about shell and git and all you need to be efficient in coding. 
-Here are some very nice resources, which have some tipps for beginners and 
-pros alike</p>
-<p><a href="https://missing.csail.mit.edu/">The missing semester</a></p>
+<h1 id="til-semantic-search-with-sqlite">TIL - Semantic Search with SQLite</h1>
+<h2 id="use-sqlite-vec-as-vector-database-for-semantic-search">Use SQLite vec as vector database for semantic search</h2>
+<p>I have searched for a solution to run a light weight vector db locally. 
+My first thought was to use SQLite for it and I found a plugin for it:
+<a href="https://github.com/asg017/sqlite-vec">SQLite Vec</a></p>
+<p>It is a predesessor from SQLite vss from the same author. </p>
+<p>You still need a embedding before you can store vectors. You can run 
+<a href="https://sbert.net/">Sentence Transformer</a> locally. You will need
+<a href="https://pytorch.org/get-started/locally/">PyTorch</a> for it. </p>
+<p>The easiest and instantly working way, was following the LangChain
+tutorial for it. </p>
+<p>Here is the <a href="https://python.langchain.com/docs/integrations/vectorstores/sqlitevec/">LangChain Documentation</a>
+for this. You will need to install LangChain Community for it. </p>
 
 
 
