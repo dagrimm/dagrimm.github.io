@@ -396,9 +396,44 @@ header {
         font-size: 2.5rem;
     }
     
+    .container {
+        padding: 15px;
+    }
+    
     .profile-section {
         flex-direction: column;
+        align-items: center;
+        justify-content: center;
         text-align: center;
+        gap: 30px;
+    }
+    
+    .profile-image {
+        width: 150px;
+        height: 150px;
+        margin: 0 auto;
+    }
+    
+    .profile-text {
+        flex: 1;
+        min-width: 100%;
+        text-align: center;
+        padding: 0 10px;
+    }
+    
+    .profile-text h2 {
+        font-size: 2rem;
+        margin-bottom: 15px;
+    }
+    
+    .profile-text p {
+        font-size: 1rem;
+        line-height: 1.6;
+        margin-bottom: 12px;
+    }
+    
+    .neon-border {
+        padding: 25px 20px;
     }
     
     .skills-grid {
@@ -407,5 +442,11 @@ header {
     
     .projects-grid {
         grid-template-columns: 1fr;
+    }
+    
+    .subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 30px;
+        padding: 0 10px;
     }
 }
