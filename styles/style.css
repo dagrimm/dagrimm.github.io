@@ -372,6 +372,7 @@ header {
     height: 4px;
     background: #fd8925;
     animation: float 20s infinite linear;
+    bottom: -4px;
 }
 
 @keyframes float {
