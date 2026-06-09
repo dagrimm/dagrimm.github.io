@@ -765,17 +765,28 @@ body {
 
 @media (max-width: 768px) {
     /* === Maximum performance on mobile ===
-       Fast scrolling makes mobile browsers repaint position:fixed layers
-       asynchronously, which flashes through as white glitches. So on phones
-       we remove EVERY fixed/animated atmosphere layer and instead bake a
-       static synthwave gradient into <body>, which scrolls with the content
-       and therefore never lags. Nothing fixed, nothing animated = nothing
-       to glitch. */
-    .bg-grid,
+       Fast scrolling makes mobile browsers repaint animated position:fixed
+       layers asynchronously, which flashes through as white glitches. So on
+       phones we drop every ANIMATED atmosphere layer and bake a static
+       synthwave gradient into <body>, which scrolls with the content.
+
+       The perspective grid stays, but static: with no animation and a 3D
+       transform it lives on its own composited layer the browser just holds
+       in place while content scrolls over it — no per-frame repaint. */
     .bg-glow,
     .scanlines,
     .vignette,
     .floating-elements { display: none; }
+
+    .bg-grid {
+        opacity: 0.42;
+        transform: translateZ(0); /* promote to a stable composited layer */
+    }
+
+    .bg-grid::after {
+        animation: none;
+        transform: rotateX(72deg); /* hold the final static perspective */
+    }
 
     body {
         background:
@@ -786,12 +797,13 @@ body {
         background-attachment: scroll;
     }
 
-    /* backdrop-filter re-blurs every frame — far too costly on phones.
-       Opaque panel instead. */
+    /* Drop the per-frame backdrop blur (the costly part), but keep the panel
+       translucent — with no blur this is cheap and lets the static grid and
+       blooms read through, as in the original mobile version. */
     .panel {
         backdrop-filter: none;
         -webkit-backdrop-filter: none;
-        background: rgba(13, 10, 22, 0.9);
+        background: rgba(11, 8, 20, 0.8);
     }
 
     /* clip-path + text-shadow glitch repaints the title constantly — skip it,
