@@ -78,14 +78,17 @@ body {
         linear-gradient(rgba(0, 255, 204, 0.45) 1px, transparent 1px),
         linear-gradient(90deg, rgba(253, 137, 37, 0.4) 1px, transparent 1px);
     background-size: 56px 56px;
-    transform: rotateX(72deg);
     transform-origin: 50% 100%;
+    /* Animate via GPU transform (composited) rather than background-position
+       (repaint). One tile = 56px, so the loop is seamless. */
+    transform: rotateX(72deg) translate3d(0, 0, 0);
+    will-change: transform;
     animation: grid-run 9s linear infinite;
 }
 
 @keyframes grid-run {
-    from { background-position: 0 0; }
-    to   { background-position: 0 56px; }
+    from { transform: rotateX(72deg) translate3d(0, 0, 0); }
+    to   { transform: rotateX(72deg) translate3d(0, 56px, 0); }
 }
 
 /* Ambient color blooms */
@@ -143,6 +146,7 @@ body {
     background: var(--cyan);
     box-shadow: 0 0 8px 2px rgba(0, 255, 204, 0.8);
     animation: float 22s infinite linear;
+    will-change: transform, opacity;
 }
 
 .floating-element:nth-child(even) {
@@ -658,6 +662,31 @@ body {
 /* ---------- Responsive ---------- */
 
 @media (max-width: 768px) {
+    /* --- Performance: drop GPU-heavy effects on mobile --- */
+
+    /* backdrop-filter re-blurs every frame as the grid/particles move —
+       far too costly on phones. Use an opaque panel instead. */
+    .panel {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        background: rgba(13, 10, 22, 0.92);
+    }
+
+    /* mix-blend-mode compositing is expensive; plain low-opacity overlay reads
+       the same at phone DPI. */
+    .scanlines {
+        mix-blend-mode: normal;
+        opacity: 0.25;
+    }
+
+    /* clip-path + text-shadow glitch repaints the title constantly — skip it,
+       keep the static neon glow. */
+    .glitch-title::before,
+    .glitch-title::after { display: none; }
+
+    /* Thin the particle field so fewer layers animate. */
+    .floating-element:nth-child(2n) { display: none; }
+
     .container { padding: 16px 16px 0; }
 
     .hero { padding: 60px 0 44px; }
