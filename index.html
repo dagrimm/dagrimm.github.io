@@ -221,56 +221,23 @@
                 items.forEach(function (el) { io.observe(el); });
             }
 
-            /* ---- Hero: scramble-decode the name, then typewriter the subtitle ---- */
-            var title = document.querySelector('.glitch-title');
+            /* ---- Hero: typewriter the subtitle on load ---- */
             var subtitle = document.querySelector('.subtitle');
-            if (reduce || !title) return; // leave the final, readable text in place
+            if (reduce || !subtitle) return; // leave the final, readable text in place
 
-            var glyphs = '!<>-_\\/[]{}=+*^?#%ABCDEFGHKLMNRSTVXZ0123456789';
-            var nameText = title.getAttribute('data-text') || title.textContent;
-            var subText = subtitle ? subtitle.textContent : '';
-
-            function setTitle(s) { title.textContent = s; title.setAttribute('data-text', s); }
-
-            function typeSubtitle() {
-                if (!subtitle) return;
-                subtitle.textContent = '';
-                subtitle.classList.add('typing');
-                var i = 0;
-                (function step() {
-                    subtitle.textContent = subText.slice(0, i);
-                    i++;
-                    if (i <= subText.length) {
-                        setTimeout(step, 34);
-                    } else {
-                        subtitle.classList.remove('typing');
-                    }
-                })();
-            }
-
-            function decodeTitle() {
-                var TOTAL = 34, frame = 0;
-                (function step() {
-                    var reveal = Math.floor((frame / TOTAL) * nameText.length);
-                    var out = '';
-                    for (var i = 0; i < nameText.length; i++) {
-                        if (nameText.charAt(i) === ' ') { out += ' '; }
-                        else if (i < reveal) { out += nameText.charAt(i); }
-                        else { out += glyphs.charAt(Math.floor(Math.random() * glyphs.length)); }
-                    }
-                    setTitle(out);
-                    frame++;
-                    if (frame <= TOTAL) {
-                        requestAnimationFrame(step);
-                    } else {
-                        setTitle(nameText);
-                        typeSubtitle();
-                    }
-                })();
-            }
-
-            // Kick off after first paint so the fade-in and decode read together.
-            requestAnimationFrame(decodeTitle);
+            var subText = subtitle.textContent;
+            subtitle.textContent = '';
+            subtitle.classList.add('typing');
+            var i = 0;
+            (function step() {
+                subtitle.textContent = subText.slice(0, i);
+                i++;
+                if (i <= subText.length) {
+                    setTimeout(step, 34);
+                } else {
+                    subtitle.classList.remove('typing');
+                }
+            })();
         })();
     </script>
 </body>
