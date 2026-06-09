@@ -8,7 +8,6 @@
     --orange-soft: rgba(253, 137, 37, 0.14);
     --cyan: #00ffcc;
     --cyan-soft: rgba(0, 255, 204, 0.12);
-    --magenta: #ff2e97;
 
     --bg-0: #07060d;
     --bg-1: #0b0814;
@@ -39,7 +38,7 @@ html {
 }
 
 body {
-    background: radial-gradient(1200px 700px at 50% -10%, #15102a 0%, var(--bg-1) 45%, var(--bg-0) 100%);
+    background: radial-gradient(1200px 700px at 50% -10%, #141318 0%, var(--bg-1) 45%, var(--bg-0) 100%);
     color: var(--ink);
     font-family: var(--display);
     min-height: 100vh;
@@ -102,7 +101,7 @@ body {
     background:
         radial-gradient(420px 420px at 12% 18%, rgba(253, 137, 37, 0.10), transparent 70%),
         radial-gradient(480px 480px at 88% 30%, rgba(0, 255, 204, 0.10), transparent 70%),
-        radial-gradient(600px 600px at 50% 110%, rgba(255, 46, 151, 0.12), transparent 70%);
+        radial-gradient(600px 600px at 50% 110%, rgba(0, 255, 204, 0.08), transparent 70%);
 }
 
 /* CRT scanlines */
@@ -220,8 +219,8 @@ body {
 }
 
 .glitch-title::after {
-    color: var(--magenta);
-    text-shadow: 0 0 12px rgba(255, 46, 151, 0.5);
+    color: var(--orange);
+    text-shadow: 0 0 12px rgba(253, 137, 37, 0.5);
     animation: glitch-b 4.2s infinite steps(1);
 }
 
@@ -751,7 +750,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: linear-gradient(var(--orange), var(--magenta));
+    background: linear-gradient(var(--orange), var(--cyan));
     border-radius: 99px;
     border: 2px solid var(--bg-0);
 }
