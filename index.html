@@ -3,164 +3,205 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>David Grimm</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <title>David Grimm — CTO & Product Strategist</title>
+    <meta name="description" content="David Grimm — CTO & Product Strategist with 17+ years architecting AI, data intelligence and financial platforms.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Press+Start+2P&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-    <div class="floating-elements">
-        <div class="floating-element" style="left: 10%; animation-delay: 0s;"></div>
-        <div class="floating-element" style="left: 20%; animation-delay: 2s;"></div>
-        <div class="floating-element" style="left: 30%; animation-delay: 4s;"></div>
-        <div class="floating-element" style="left: 40%; animation-delay: 6s;"></div>
-        <div class="floating-element" style="left: 50%; animation-delay: 8s;"></div>
-        <div class="floating-element" style="left: 60%; animation-delay: 10s;"></div>
-        <div class="floating-element" style="left: 70%; animation-delay: 12s;"></div>
-        <div class="floating-element" style="left: 80%; animation-delay: 14s;"></div>
-        <div class="floating-element" style="left: 90%; animation-delay: 16s;"></div>
+    <!-- Atmosphere layers -->
+    <div class="bg-grid" aria-hidden="true"></div>
+    <div class="bg-glow" aria-hidden="true"></div>
+    <div class="scanlines" aria-hidden="true"></div>
+    <div class="vignette" aria-hidden="true"></div>
+    <div class="floating-elements" aria-hidden="true">
+        <span class="floating-element" style="left: 8%;  animation-delay: 0s;"></span>
+        <span class="floating-element" style="left: 19%; animation-delay: 3s;"></span>
+        <span class="floating-element" style="left: 31%; animation-delay: 6s;"></span>
+        <span class="floating-element" style="left: 44%; animation-delay: 9s;"></span>
+        <span class="floating-element" style="left: 57%; animation-delay: 1.5s;"></span>
+        <span class="floating-element" style="left: 68%; animation-delay: 11s;"></span>
+        <span class="floating-element" style="left: 79%; animation-delay: 5s;"></span>
+        <span class="floating-element" style="left: 91%; animation-delay: 8s;"></span>
     </div>
 
     <div class="container">
-        <header>
-            <h1 class="glitch-title">David Grimm</h1>
-            <p class="subtitle body-text">CTO & Product Strategist | AI Implementation</p>
+        <header class="hero reveal">
+            <p class="kicker">// SYSTEM ONLINE — PORTFOLIO v2.0</p>
+            <h1 class="glitch-title" data-text="David Grimm">David Grimm</h1>
+            <p class="subtitle">CTO &amp; Product Strategist &bull; AI Implementation</p>
+            <div class="hero-status">
+                <span class="status-dot"></span>
+                <span class="body-text">Available for select engagements</span>
+            </div>
         </header>
 
         <main>
-            <section class="neon-border">
+            <section class="panel reveal" id="about">
+                <div class="panel-label">
+                    <span class="panel-num">01</span>
+                    <span class="panel-name">About</span>
+                </div>
                 <div class="profile-section">
-                    <div class="profile-image"></div>
-                    <div class="profile-text">
-                        <h2>About me</h2>
+                    <div class="profile-image-wrap">
+                        <div class="profile-image"></div>
+                    </div>
+                    <div class="profile-text body-text">
+                        <h2 class="section-heading">About me</h2>
                         <p>With over 17 years navigating the constantly evolving landscape of technology, I've architected digital solutions that bridge innovation with practical execution.</p>
                         <p>My journey has spanned the full spectrum of tech challenges, from scaling content management for startups to building sophisticated data intelligence engines and financial management platforms that process millions in transactions.</p>
                         <p>A decade ago, while the world was just discovering machine learning, I was already training neural network classifiers. This early foundation gives me a unique perspective on today's "AI revolution", rooted in actual implementation rather than hype. I'm passionate about cutting through the buzzwords to deliver solutions that work.</p>
                         <p>Having delivered over 300 successful projects, I bring a rare combination of technical depth and strategic vision. When you work with me, you get honest assessment, relentless dedication, and solutions built to last.</p>
-
                     </div>
                 </div>
             </section>
 
-            <section class="neon-border">
-                <h2 style="text-align: center; font-size: 2.5rem; color: #fd8925; margin-bottom: 30px;">Experience</h2>
+            <section class="panel reveal" id="experience">
+                <div class="panel-label">
+                    <span class="panel-num">02</span>
+                    <span class="panel-name">Experience</span>
+                </div>
+                <h2 class="section-heading centered accent-orange">Capabilities</h2>
                 <div class="skills-grid">
-                    <div class="skill-card">
+                    <article class="skill-card">
                         <h3>Machine Learning</h3>
-                        <p>Tensorflow, Pytorch, Keras, Sagemaker</p>
-                    </div>
-                    <div class="skill-card">
+                        <p class="body-text">Tensorflow, Pytorch, Keras, Sagemaker</p>
+                    </article>
+                    <article class="skill-card">
                         <h3>Backend</h3>
-                        <p>Node.js, FastAPI, Spring, ColdFusion</p>
-                    </div>
-                    <div class="skill-card">
+                        <p class="body-text">Node.js, FastAPI, Spring, ColdFusion</p>
+                    </article>
+                    <article class="skill-card">
                         <h3>API Design</h3>
-                        <p>OpenAPI, Postman, Bruno, Swagger </p>
-                    </div>
-                    <div class="skill-card">
+                        <p class="body-text">OpenAPI, Postman, Bruno, Swagger</p>
+                    </article>
+                    <article class="skill-card">
                         <h3>Ops</h3>
-                        <p>Docker, AWS, Azure, GCP</p>
-                    </div>
+                        <p class="body-text">Docker, AWS, Azure, GCP</p>
+                    </article>
                 </div>
             </section>
 
-            <section class="neon-border">
-                <h2 style="text-align: center; font-size: 2.5rem; color: #00ffcc; margin-bottom: 30px;">Featured Projects</h2>
+            <section class="panel reveal" id="projects">
+                <div class="panel-label cyan">
+                    <span class="panel-num">03</span>
+                    <span class="panel-name">Projects</span>
+                </div>
+                <h2 class="section-heading centered accent-cyan">Featured Projects</h2>
                 <div class="projects-grid">
-                    <div class="project-card">
+                    <article class="project-card">
                         <div class="project-header">
                             <h3>Fraud Prevention</h3>
                             <span class="project-year">2012</span>
                         </div>
-                        <p>Using e-fingerprinting for social media fraud prevention</p>
+                        <p class="body-text">Using e-fingerprinting for social media fraud prevention</p>
                         <div class="project-tech">
                             <span class="tech-tag">Fuzzy-IDs</span>
                             <span class="tech-tag">Proxy Piercing</span>
                             <span class="tech-tag">Behavioral Algorithms</span>
                         </div>
-                    </div>
-                    <div class="project-card">
+                    </article>
+                    <article class="project-card">
                         <div class="project-header">
                             <h3>Risk Management</h3>
                             <span class="project-year">2016</span>
                         </div>
-                        <p>Credit risk management system with real-time check in several e-Commerce platforms</p>
+                        <p class="body-text">Credit risk management system with real-time check in several e-Commerce platforms</p>
                         <div class="project-tech">
                             <span class="tech-tag">ColdFusion</span>
                             <span class="tech-tag">SOAP</span>
                             <span class="tech-tag">Flask</span>
                         </div>
-                    </div>
-                    <div class="project-card">
+                    </article>
+                    <article class="project-card">
                         <div class="project-header">
                             <h3>Finance</h3>
                             <span class="project-year">2017</span>
                         </div>
-                        <p>Building a PFM platform for B2C customers with real time multi-banking access</p>
+                        <p class="body-text">Building a PFM platform for B2C customers with real time multi-banking access</p>
                         <div class="project-tech">
                             <span class="tech-tag">Angular</span>
                             <span class="tech-tag">Django</span>
                             <span class="tech-tag">Docker</span>
                         </div>
-                    </div>
-                    <div class="project-card">
+                    </article>
+                    <article class="project-card">
                         <div class="project-header">
                             <h3>Data Intelligence</h3>
                             <span class="project-year">2019</span>
                         </div>
-                        <p>Building data intelligence services for leading open banking provider</p>
+                        <p class="body-text">Building data intelligence services for leading open banking provider</p>
                         <div class="project-tech">
                             <span class="tech-tag">Spring</span>
                             <span class="tech-tag">Sagemaker</span>
                             <span class="tech-tag">Elastic</span>
                         </div>
-                    </div>
-                    <div class="project-card">
+                    </article>
+                    <article class="project-card">
                         <div class="project-header">
                             <h3>Custom Solutions</h3>
                             <span class="project-year">2021</span>
                         </div>
-                        <p>Building custom solutions for various companies in the CX area</p>
+                        <p class="body-text">Building custom solutions for various companies in the CX area</p>
                         <div class="project-tech">
                             <span class="tech-tag">React</span>
                             <span class="tech-tag">Postman</span>
                             <span class="tech-tag">Jira</span>
                         </div>
-                    </div>
-                    <div class="project-card">
+                    </article>
+                    <article class="project-card">
                         <div class="project-header">
                             <h3>Automation</h3>
                             <span class="project-year">2023</span>
                         </div>
-                        <p>Building a visual workflow and AI orchestration platform</p>
+                        <p class="body-text">Building a visual workflow and AI orchestration platform</p>
                         <div class="project-tech">
                             <span class="tech-tag">Reactflow</span>
                             <span class="tech-tag">AWS</span>
                             <span class="tech-tag">LangGraph</span>
                         </div>
-                    </div>
+                    </article>
                 </div>
             </section>
 
-            <section class="contact-section">
-                <h2>Connect</h2>
+            <section class="contact-section reveal" id="contact">
+                <p class="kicker">// ESTABLISH CONNECTION</p>
+                <h2 class="section-heading centered accent-orange">Connect</h2>
                 <div class="social-links">
-                    <a href="https://github.com/dagrimm" target="_blank" class="social-link body-text">GitHub</a>
-                    <a href="https://de.linkedin.com/in/david-grimm-8577651bb" target="_blank" class="social-link body-text">LinkedIn</a>
+                    <a href="https://github.com/dagrimm" target="_blank" rel="noopener" class="social-link body-text">GitHub</a>
+                    <a href="https://de.linkedin.com/in/david-grimm-8577651bb" target="_blank" rel="noopener" class="social-link body-text">LinkedIn</a>
                     <a href="mailto:david@dataflow-labs.de" class="social-link body-text">Email</a>
                 </div>
-                <!--
-                <div style="margin-top: 30px;">
-                    <button class="retro-button body-text">Download Resume</button>
-                    <button class="retro-button body-text">View Projects</button>
-                </div>
-                -->
             </section>
         </main>
 
         <footer class="footer">
-            <p>&copy; <script>document.write(new Date().getFullYear())</script> | All rights reserved</p>
+            <p class="body-text">&copy; <script>document.write(new Date().getFullYear())</script> David Grimm &bull; All rights reserved</p>
         </footer>
     </div>
+
+    <script>
+        // Staggered scroll reveals — no framework, respects reduced-motion
+        (function () {
+            var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            var items = document.querySelectorAll('.reveal');
+            if (reduce || !('IntersectionObserver' in window)) {
+                items.forEach(function (el) { el.classList.add('is-visible'); });
+                return;
+            }
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        io.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+            items.forEach(function (el) { io.observe(el); });
+        })();
+    </script>
 </body>
 </html>
