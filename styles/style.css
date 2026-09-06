@@ -774,6 +774,76 @@ body {
     letter-spacing: 0.04em;
 }
 
+/* ---------- Back to top ---------- */
+
+.back-to-top {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 4;
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(0, 255, 204, 0.6);
+    border-radius: 6px;
+    background: rgba(7, 6, 13, 0.88);
+    color: var(--cyan);
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(10px);
+    box-shadow: 0 0 14px rgba(0, 255, 204, 0.18);
+    transition: opacity 0.22s ease, transform 0.22s ease, background 0.22s ease, box-shadow 0.22s ease;
+}
+
+/* Two unfilled pixel chevrons: deliberately no arrow shaft. */
+.back-to-top-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    margin-top: 2px;
+}
+
+.back-to-top-chevron {
+    position: relative;
+    width: 20px;
+    height: 12px;
+    filter: drop-shadow(0 0 3px rgba(0, 255, 204, 0.55));
+}
+
+.back-to-top-chevron::before,
+.back-to-top-chevron::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 4px;
+    height: 4px;
+    background: var(--cyan);
+}
+
+.back-to-top-chevron::before {
+    left: 0;
+    box-shadow: 4px -4px var(--cyan), 8px -8px var(--cyan);
+}
+
+.back-to-top-chevron::after {
+    right: 0;
+    box-shadow: -4px -4px var(--cyan), -8px -8px var(--cyan);
+}
+
+.back-to-top.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.back-to-top:hover,
+.back-to-top:focus-visible {
+    background: rgba(0, 255, 204, 0.12);
+    box-shadow: 0 0 20px rgba(0, 255, 204, 0.36);
+    outline: none;
+}
+
 /* ---------- Scroll reveal ---------- */
 
 .reveal {
@@ -916,6 +986,11 @@ body {
     .hero-action { width: min(100%, 300px); }
 
     .social-link { width: 100%; max-width: 280px; }
+
+    .back-to-top {
+        right: 16px;
+        bottom: 16px;
+    }
 }
 
 /* ---------- Motion preferences ---------- */

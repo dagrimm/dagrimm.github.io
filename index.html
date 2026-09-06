@@ -221,6 +221,8 @@
         </footer>
     </div>
 
+    <button class="back-to-top" type="button" aria-label="Back to top" title="Back to top"><span class="back-to-top-icon" aria-hidden="true"><span class="back-to-top-chevron"></span><span class="back-to-top-chevron"></span></span></button>
+
     <script>
         (function () {
             var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -243,21 +245,34 @@
 
             /* ---- Hero: typewriter the subtitle on load ---- */
             var subtitle = document.querySelector('.subtitle');
-            if (reduce || !subtitle) return; // leave the final, readable text in place
+            if (!reduce && subtitle) {
+                var subText = subtitle.textContent;
+                subtitle.textContent = '';
+                subtitle.classList.add('typing');
+                var i = 0;
+                (function step() {
+                    subtitle.textContent = subText.slice(0, i);
+                    i++;
+                    if (i <= subText.length) {
+                        setTimeout(step, 34);
+                    } else {
+                        subtitle.classList.remove('typing');
+                    }
+                })();
+            }
 
-            var subText = subtitle.textContent;
-            subtitle.textContent = '';
-            subtitle.classList.add('typing');
-            var i = 0;
-            (function step() {
-                subtitle.textContent = subText.slice(0, i);
-                i++;
-                if (i <= subText.length) {
-                    setTimeout(step, 34);
-                } else {
-                    subtitle.classList.remove('typing');
+            /* ---- Back to top control ---- */
+            var backToTop = document.querySelector('.back-to-top');
+            if (backToTop) {
+                function toggleBackToTop() {
+                    backToTop.classList.toggle('is-visible', window.scrollY > 420);
                 }
-            })();
+                window.addEventListener('scroll', toggleBackToTop, { passive: true });
+                toggleBackToTop();
+                backToTop.addEventListener('click', function () {
+                    window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+                });
+            }
         })();
     </script>
 </body>
