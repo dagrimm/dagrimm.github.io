@@ -30,7 +30,7 @@
 
     <div class="container">
         <header class="hero reveal">
-            <p class="kicker">// LOADING INTERFACE... DONE</p>
+            <p class="kicker kicker-boot">// LOADING INTERFACE<span class="kicker-dots" aria-hidden="true"><span>.</span><span>.</span><span>.</span></span> <span class="kicker-done">DONE</span></p>
             <h1 class="glitch-title" data-text="David Grimm">David Grimm</h1>
             <p class="subtitle">CTO &amp; Product Strategist &bull; AI Implementation</p>
             <div class="hero-status">
@@ -243,8 +243,16 @@
                 items.forEach(function (el) { io.observe(el); });
             }
 
-            /* ---- Hero: typewriter the subtitle on load ---- */
+            /* ---- Hero: typewriter the subtitle, then land the kicker's DONE ---- */
             var subtitle = document.querySelector('.subtitle');
+            var kicker = document.querySelector('.kicker-boot');
+
+            /* Settles the cycling dots and reveals DONE. Called the moment the
+               caret goes away, so the boot line resolves with the subtitle. */
+            function finishBoot() {
+                if (kicker) { kicker.classList.add('is-done'); }
+            }
+
             if (!reduce && subtitle) {
                 var subText = subtitle.textContent;
                 subtitle.textContent = '';
@@ -257,8 +265,12 @@
                         setTimeout(step, 34);
                     } else {
                         subtitle.classList.remove('typing');
+                        finishBoot();
                     }
                 })();
+            } else {
+                /* No typing pass to wait on — show the finished state at once. */
+                finishBoot();
             }
 
             /* ---- Back to top control ---- */

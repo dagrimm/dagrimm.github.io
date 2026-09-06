@@ -190,6 +190,40 @@ body {
     margin-bottom: 28px;
 }
 
+/* ---- Hero boot line ----
+   The dots fill in one at a time while the subtitle types itself out, then JS
+   adds .is-done and the line settles on "... DONE". Both the dots and DONE are
+   hidden with opacity/visibility rather than display, so the space is held from
+   the first paint and the centred line never jumps when DONE lands. */
+.kicker-dots span {
+    animation: kicker-dot-1 1.4s steps(1) infinite;
+}
+
+.kicker-dots span:nth-child(2) { animation-name: kicker-dot-2; }
+.kicker-dots span:nth-child(3) { animation-name: kicker-dot-3; }
+
+/* Two stops each: steps(1) holds the first until the second, then the loop
+   drops all three back to nothing and the fill starts over. */
+@keyframes kicker-dot-1 { 0% { opacity: 0; } 25% { opacity: 1; } }
+@keyframes kicker-dot-2 { 0% { opacity: 0; } 50% { opacity: 1; } }
+@keyframes kicker-dot-3 { 0% { opacity: 0; } 75% { opacity: 1; } }
+
+.kicker-done {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.kicker-boot.is-done .kicker-dots span {
+    animation: none;
+    opacity: 1;
+}
+
+.kicker-boot.is-done .kicker-done {
+    visibility: visible;
+    opacity: 1;
+}
+
 .glitch-title {
     font-size: clamp(2.6rem, 9vw, 5.4rem);
     font-weight: 900;
