@@ -287,6 +287,9 @@ body {
 }
 
 .hero-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     color: var(--ink);
     font-size: 0.78rem;
     letter-spacing: 0.04em;
@@ -298,6 +301,86 @@ body {
     transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
 }
 
+/* ---- Hero transport controls ----
+   Play, pause and fast-forward are all drawn on one 3x2px pixel grid, at the
+   cap height of the label, so they read as one set of tape-deck key legends
+   rather than three unrelated glyphs. A hairline rule separates them from the
+   text the way a deck separates its transport panel from its faceplate. */
+.control-icon {
+    display: inline-flex;
+    align-items: center;
+    /* One gap for every variant: the glyph runs then measure the same width,
+       so the dividers line up when the buttons stack and right-align. */
+    gap: 3px;
+    height: 14px;
+    margin-left: 10px;
+}
+
+.control-icon::before {
+    content: '';
+    align-self: stretch;
+    width: 1px;
+    margin-right: 10px;
+    background: currentColor;
+    opacity: 0.3;
+}
+
+/* One shared primitive: a 9x10 pixel triangle stepping one cell per row
+   (widths 3, 6, 9, 6, 3). Play is one of them; fast-forward is two. */
+.play-mark,
+.control-icon-forward span {
+    flex: 0 0 auto;
+    width: 9px;
+    height: 10px;
+    background: currentColor;
+    clip-path: polygon(
+        0 0,
+        33.333% 0, 33.333% 20%,
+        66.667% 20%, 66.667% 40%,
+        100% 40%, 100% 60%,
+        66.667% 60%, 66.667% 80%,
+        33.333% 80%, 33.333% 100%,
+        0 100%
+    );
+}
+
+/* The heads spool forward on hover, the trailing one a beat behind. */
+.control-icon-forward span {
+    transition: transform 0.25s ease;
+}
+
+.hero-action:hover .control-icon-forward span {
+    transform: translateX(3px);
+}
+
+.hero-action:hover .control-icon-forward span:last-child {
+    transition-delay: 0.06s;
+}
+
+.pause-mark {
+    display: flex;
+    gap: 3px;
+    height: 10px;
+}
+
+.pause-mark span {
+    width: 3px;
+    height: 10px;
+    background: currentColor;
+}
+
+/* Tie the glyphs to the page's control colour — the same cyan as the
+   back-to-top key — instead of competing with the label at full ink. */
+.hero-action .control-icon {
+    color: var(--cyan);
+    filter: drop-shadow(0 0 3px rgba(0, 255, 204, 0.35));
+}
+
+.hero-action-primary .control-icon {
+    color: rgba(7, 6, 13, 0.82);
+    filter: none;
+}
+
 .hero-action:hover {
     transform: translateY(-3px);
     border-color: var(--cyan);
@@ -305,17 +388,63 @@ body {
     box-shadow: 0 10px 24px rgba(0, 255, 204, 0.16);
 }
 
+/* Starting a conversation is the ask; browsing the work is the alternative.
+   The primary carries the fill, the bolder label and the wider gutters, so the
+   pair reads as one loud key and one quiet one. */
 .hero-action-primary {
     color: var(--bg-0);
+    font-weight: 700;
+    padding: 11px 24px;
     border-color: var(--orange);
     background: var(--orange);
-    box-shadow: 0 0 18px rgba(253, 137, 37, 0.25);
+    box-shadow: 0 0 26px rgba(253, 137, 37, 0.38);
+    /* Own stacking context, so the glitch copies below can sit at z-index -1. */
+    position: relative;
+    z-index: 0;
 }
 
 .hero-action-primary:hover {
     border-color: var(--orange);
     background: #ffa143;
-    box-shadow: 0 10px 26px rgba(253, 137, 37, 0.32);
+    box-shadow: 0 10px 30px rgba(253, 137, 37, 0.45);
+}
+
+/* The fill runs the title's chromatic-aberration glitch — the same keyframes
+   on the same 4.2s cycle — so the pill tears when the name does. On the title
+   the orange thing that splits is the lettering; here it is the button face.
+   The copies sit at z-index -1: painted over the button's own fill but under
+   the label, so the orange behind the text splits and the text stays crisp. */
+.hero-action-primary::before,
+.hero-action-primary::after {
+    content: '';
+    position: absolute;
+    /* -1px so the copies cover the border, not just the padding box. */
+    inset: -1px;
+    z-index: -1;
+    border-radius: inherit;
+    pointer-events: none;
+}
+
+/* Solid fills: the keyframes' own 0.8 opacity is what softens them, and the
+   cyan needs every bit of it to stay cyan rather than go muddy over orange. */
+.hero-action-primary::before {
+    background: var(--cyan);
+    animation: glitch-a 4.2s infinite steps(1);
+}
+
+/* A lift on the orange so the copy's offset edge is legible against the fill. */
+.hero-action-primary::after {
+    background: #ffb866;
+    animation: glitch-b 4.2s infinite steps(1);
+}
+
+.hero-action-secondary {
+    color: var(--ink-dim);
+    border-color: rgba(244, 241, 255, 0.18);
+}
+
+.hero-action-secondary:hover {
+    color: var(--ink);
 }
 
 .status-dot {
@@ -927,7 +1056,9 @@ body {
     /* clip-path + text-shadow glitch repaints the title constantly — skip it,
        keep the static neon glow. */
     .glitch-title::before,
-    .glitch-title::after { display: none; }
+    .glitch-title::after,
+    .hero-action-primary::before,
+    .hero-action-primary::after { display: none; }
 
     .container { padding: 16px 16px 0; }
 
@@ -983,7 +1114,18 @@ body {
 
     .hero-actions { margin-top: 18px; }
 
-    .hero-action { width: min(100%, 300px); }
+    /* Stacked full-width buttons: pin the transport legends to the right so
+       they line up in a column, the way keys do on a deck's faceplate. */
+    .hero-action {
+        width: min(100%, 300px);
+        justify-content: space-between;
+    }
+
+    .hero-action .control-icon { margin-left: auto; }
+
+    /* Full-width buttons don't need the primary's extra gutters, and equal
+       padding is what lets the two legends line up. */
+    .hero-action-primary { padding-left: 16px; padding-right: 16px; }
 
     .social-link { width: 100%; max-width: 280px; }
 
@@ -1007,7 +1149,10 @@ body {
     .bg-grid { opacity: 0.3; }
 
     /* Without the running animation the glitch layers fall back to opacity:1
-       and cover the title — hide them and keep the clean neon heading. */
+       and cover the title and the CTA fill — hide them and keep the clean
+       neon heading and a flat orange button. */
     .glitch-title::before,
-    .glitch-title::after { display: none; }
+    .glitch-title::after,
+    .hero-action-primary::before,
+    .hero-action-primary::after { display: none; }
 }
