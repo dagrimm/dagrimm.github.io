@@ -1,975 +1,290 @@
-/* ============================================================
-   David Grimm — Outrun, refined.
-   A tape-deck hero on a glowing horizon, and a career line
-   running down the page.
-   Orange is the identity; cyan is anything live or operable.
-   ============================================================ */
+/* The page as one signal-flow diagram. A single orange line runs from
+   the headline through every project and ends at the reader's problem. */
 
 :root {
-    --orange: #fd8925;
-    --cyan: #00ffcc;
-
-    --bg-0: #060607;
-    --ink: #f1eee8;
-    --ink-dim: #a8a59f;
-    --rule: rgba(241, 238, 232, 0.14);
-
-    --display: 'Michroma', 'Eurostile', sans-serif;
-    --text: 'Barlow', 'Helvetica Neue', Arial, sans-serif;
-    --mono: 'Space Mono', 'Courier New', monospace;
-
-    --page: 1180px;
-    --gutter: clamp(20px, 5vw, 64px);
+    --paper: #eeeeea;
+    --ink: #161616;
+    --ink-dim: #55554f;
+    --signal: #ff4d00;
+    --hairline: rgba(22, 22, 22, 0.2);
+    --text: 'Familjen Grotesk', 'Helvetica Neue', Arial, sans-serif;
+    --mono: 'IBM Plex Mono', 'Courier New', monospace;
+    --gutter: clamp(20px, 5vw, 72px);
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-html {
-    scroll-behavior: smooth;
-    /* Solid dark base so nothing can ever flash white behind the page. */
-    background-color: var(--bg-0);
+html { background-color: var(--paper); }
+
+/* Uncoated stock: long fibres plus fine grain, in one tile painted once. */
+body {
+    min-height: 100vh;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='360'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.04 .16' numOctaves='3' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .2 0 0 0 0 .2 0 0 0 0 .19 0 0 0 .6 -.24'/%3E%3C/filter%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .2 0 0 0 0 .2 0 0 0 0 .19 0 0 0 .6 -.22'/%3E%3C/filter%3E%3Crect width='360' height='360' filter='url(%23f)' opacity='.13'/%3E%3Crect width='360' height='360' filter='url(%23g)' opacity='.4'/%3E%3C/svg%3E");
 }
 
 body {
-    /* Blooms scroll with the page: painted once, nothing to repaint. */
-    background:
-        radial-gradient(760px 620px at 100% 1000px, rgba(253, 137, 37, 0.13), transparent 70%),
-        radial-gradient(820px 700px at 0% 1750px, rgba(0, 255, 204, 0.09), transparent 70%),
-        radial-gradient(820px 760px at 100% 2700px, rgba(0, 255, 204, 0.08), transparent 70%),
-        var(--bg-0);
     color: var(--ink);
     font-family: var(--text);
-    font-size: 1.0625rem;
-    line-height: 1.6;
-    min-height: 100vh;
-    overflow-x: hidden;
+    font-size: 1.125rem;
+    line-height: 1.5;
     -webkit-font-smoothing: antialiased;
 }
 
-ul,
-ol {
-    list-style: none;
-}
+ol { list-style: none; }
 
-img {
-    display: block;
-}
+:focus-visible { outline: 2px solid var(--signal); outline-offset: 3px; }
 
-:focus-visible {
-    outline: 2px solid var(--cyan);
-    outline-offset: 3px;
+::selection { background: var(--signal); color: var(--paper); }
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
 }
 
 /* ---------- Hero ---------- */
 
 .hero {
-    --ground: clamp(130px, 24vh, 260px);
-
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    min-height: min(100vh, 1080px);
-    min-height: min(100svh, 1080px);
-    overflow: hidden;
-}
-
-.hero-scene {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-}
-
-/* Light rising off the horizon: the only glow on the page. */
-.hero-scene::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: var(--ground);
-    height: 60%;
-    background: radial-gradient(62% 100% at 50% 100%, rgba(253, 137, 37, 0.3), transparent 72%);
-}
-
-.hero-scene::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: var(--ground);
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--orange) 22%, #ffe0b0 50%, var(--orange) 78%, transparent);
-}
-
-.ground {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: var(--ground);
-    overflow: hidden;
-    perspective: 320px;
-    perspective-origin: 50% 0;
-    /* Faded at both ends: lines alias into noise as they converge on the horizon. */
-    mask-image: linear-gradient(to bottom, transparent 4%, #000 34%, #000 55%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom, transparent 4%, #000 34%, #000 55%, transparent 100%);
-}
-
-.ground::after {
-    content: '';
-    position: absolute;
-    left: -100%;
-    right: -100%;
-    bottom: 0;
-    height: 400%;
-    background-image:
-        linear-gradient(rgba(0, 255, 204, 0.5) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(253, 137, 37, 0.45) 1px, transparent 1px);
-    background-size: 56px 56px;
-    transform-origin: 50% 100%;
-    /* Animate via GPU transform (composited) rather than background-position
-       (repaint). One tile = 56px, so the loop is seamless. */
-    transform: rotateX(72deg) translate3d(0, 0, 0);
-    will-change: transform;
-    animation: grid-run 9s linear infinite;
-}
-
-@keyframes grid-run {
-    from { transform: rotateX(72deg) translate3d(0, 0, 0); }
-    to   { transform: rotateX(72deg) translate3d(0, 56px, 0); }
-}
-
-.hero-copy {
-    position: relative;
-    width: 100%;
-    max-width: var(--page);
+    max-width: 1280px;
     margin: 0 auto;
-    padding: 64px var(--gutter) calc(var(--ground) + 36px);
-    text-align: center;
+    padding: clamp(24px, 4vw, 40px) var(--gutter) clamp(56px, 8vw, 96px);
 }
 
-.kicker {
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    letter-spacing: 0.14em;
-    color: var(--cyan);
-    margin-bottom: 26px;
-}
-
-/* ---- Hero boot line ----
-   The dots fill in one at a time while the subtitle types itself out, then JS
-   adds .is-done and the line settles on "... DONE". Both the dots and DONE are
-   hidden with opacity/visibility rather than display, so the space is held from
-   the first paint and the line never jumps when DONE lands. */
-.kicker-dots span {
-    animation: kicker-dot-1 1.4s steps(1) infinite;
-}
-
-.kicker-dots span:nth-child(2) { animation-name: kicker-dot-2; }
-.kicker-dots span:nth-child(3) { animation-name: kicker-dot-3; }
-
-/* Two stops each: steps(1) holds the first until the second, then the loop
-   drops all three back to nothing and the fill starts over. */
-@keyframes kicker-dot-1 { 0% { opacity: 0; } 25% { opacity: 1; } }
-@keyframes kicker-dot-2 { 0% { opacity: 0; } 50% { opacity: 1; } }
-@keyframes kicker-dot-3 { 0% { opacity: 0; } 75% { opacity: 1; } }
-
-.kicker-done {
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.kicker-boot.is-done .kicker-dots span {
-    animation: none;
-    opacity: 1;
-}
-
-.kicker-boot.is-done .kicker-done {
-    visibility: visible;
-    opacity: 1;
-}
-
-.glitch-title {
-    font-family: var(--display);
-    font-size: clamp(2.75rem, 6.7vw, 5.75rem);
-    font-weight: 400;
-    text-transform: uppercase;
-    letter-spacing: -0.02em;
-    line-height: 1.04;
-    color: var(--orange);
-    position: relative;
-    width: fit-content;
-    margin: 0 auto;
-}
-
-/* Chromatic-aberration glitch — subtle, occasional */
-.glitch-title::before,
-.glitch-title::after {
-    content: attr(data-text);
-    position: absolute;
-    inset: 0;
-    white-space: pre;
-    pointer-events: none;
-}
-
-.glitch-title::before {
-    color: var(--cyan);
-    animation: glitch-a 4.2s infinite steps(1);
-}
-
-.glitch-title::after {
-    color: var(--orange);
-    animation: glitch-b 4.2s infinite steps(1);
-}
-
-@keyframes glitch-a {
-    0%, 92%, 100% { transform: translate(0); opacity: 0; clip-path: inset(0 0 0 0); }
-    93%  { transform: translate(-3px, -1px); opacity: 0.8; clip-path: inset(0 0 62% 0); }
-    96%  { transform: translate(2px, 1px);  opacity: 0.8; clip-path: inset(58% 0 0 0); }
-}
-
-@keyframes glitch-b {
-    0%, 92%, 100% { transform: translate(0); opacity: 0; clip-path: inset(0 0 0 0); }
-    94%  { transform: translate(3px, 1px);  opacity: 0.8; clip-path: inset(0 0 55% 0); }
-    97%  { transform: translate(-2px, -1px); opacity: 0.8; clip-path: inset(60% 0 0 0); }
-}
-
-.subtitle {
-    font-family: var(--mono);
-    font-size: 0.8125rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--ink);
-    margin-top: 24px;
-    min-height: 1.6em; /* reserve space so typewriter doesn't shift layout */
-}
-
-/* Blinking terminal caret while the subtitle types out */
-.subtitle.typing::after {
-    content: '';
-    display: inline-block;
-    width: 0.6em;
-    height: 1em;
-    margin-left: 2px;
-    transform: translateY(0.12em);
-    background: var(--cyan);
-    animation: caret-blink 0.8s steps(1) infinite;
-}
-
-@keyframes caret-blink {
-    0%, 100% { opacity: 1; }
-    50%      { opacity: 0; }
-}
-
-.hero-status {
+.byline {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    margin-top: 10px;
-    font-family: var(--mono);
-    font-size: 0.8125rem;
-    color: var(--cyan);
-}
-
-.status-dot {
-    width: 7px;
-    height: 7px;
-    background: var(--cyan);
-    animation: pulse 2.4s ease-in-out infinite;
-}
-
-@keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50%      { opacity: 0.35; }
-}
-
-.hero-actions {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-top: 28px;
-}
-
-.hero-action {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--ink);
-    font-family: var(--mono);
-    font-size: 0.8125rem;
-    text-decoration: none;
-    padding: 11px 16px;
-    border: 1px solid rgba(241, 238, 232, 0.3);
-    border-radius: 2px;
-    background: rgba(6, 6, 7, 0.6);
-    transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
-}
-
-/* Keys press in; they don't float. */
-.hero-action:active {
-    transform: translateY(1px);
-}
-
-/* ---- Hero transport controls ----
-   Play, pause and fast-forward are all drawn on one 3x2px pixel grid, at the
-   cap height of the label, so they read as one set of tape-deck key legends
-   rather than three unrelated glyphs. A hairline rule separates them from the
-   text the way a deck separates its transport panel from its faceplate. */
-.control-icon {
-    display: inline-flex;
-    align-items: center;
-    /* One gap for every variant: the glyph runs then measure the same width,
-       so the dividers line up when the buttons stack and right-align. */
-    gap: 3px;
-    height: 14px;
-    margin-left: 10px;
-}
-
-.control-icon::before {
-    content: '';
-    align-self: stretch;
-    width: 1px;
-    margin-right: 10px;
-    background: currentColor;
-    opacity: 0.3;
-}
-
-/* One shared primitive: a 9x10 pixel triangle stepping one cell per row
-   (widths 3, 6, 9, 6, 3). Play is one of them; fast-forward is two. */
-.play-mark,
-.control-icon-forward span {
-    flex: 0 0 auto;
-    width: 9px;
-    height: 10px;
-    background: currentColor;
-    clip-path: polygon(
-        0 0,
-        33.333% 0, 33.333% 20%,
-        66.667% 20%, 66.667% 40%,
-        100% 40%, 100% 60%,
-        66.667% 60%, 66.667% 80%,
-        33.333% 80%, 33.333% 100%,
-        0 100%
-    );
-}
-
-/* The heads spool forward on hover, the trailing one a beat behind. */
-.control-icon-forward span {
-    transition: transform 0.25s ease;
-}
-
-.hero-action:hover .control-icon-forward span {
-    transform: translateX(3px);
-}
-
-.hero-action:hover .control-icon-forward span:last-child {
-    transition-delay: 0.06s;
-}
-
-.pause-mark {
-    display: flex;
-    gap: 3px;
-    height: 10px;
-}
-
-.pause-mark span {
-    width: 3px;
-    height: 10px;
-    background: currentColor;
-}
-
-/* Tie the glyphs to the page's control colour — the same cyan as the
-   back-to-top key — instead of competing with the label at full ink. */
-.hero-action .control-icon {
-    color: var(--cyan);
-}
-
-.hero-action-primary .control-icon {
-    color: rgba(6, 6, 7, 0.82);
-}
-
-.hero-action:hover {
-    border-color: var(--cyan);
-    background: rgba(0, 255, 204, 0.1);
-}
-
-/* Starting a conversation is the ask; browsing the work is the alternative.
-   The primary carries the fill and the bolder label, so the pair reads as one
-   loud key and one quiet one. */
-.hero-action-primary {
-    color: var(--bg-0);
-    font-weight: 700;
-    padding-left: 20px;
-    padding-right: 20px;
-    border-color: var(--orange);
-    background: var(--orange);
-    /* Own stacking context, so the glitch copies below can sit at z-index -1. */
-    position: relative;
-    z-index: 0;
-}
-
-.hero-action-primary:hover {
-    border-color: var(--orange);
-    background: #ffa143;
-}
-
-/* The fill runs the title's chromatic-aberration glitch — the same keyframes
-   on the same 4.2s cycle — so the key tears when the name does. On the title
-   the orange thing that splits is the lettering; here it is the button face.
-   The copies sit at z-index -1: painted over the button's own fill but under
-   the label, so the orange behind the text splits and the text stays crisp. */
-.hero-action-primary::before,
-.hero-action-primary::after {
-    content: '';
-    position: absolute;
-    /* -1px so the copies cover the border, not just the padding box. */
-    inset: -1px;
-    z-index: -1;
-    border-radius: inherit;
-    pointer-events: none;
-}
-
-/* Solid fills: the keyframes' own 0.8 opacity is what softens them, and the
-   cyan needs every bit of it to stay cyan rather than go muddy over orange. */
-.hero-action-primary::before {
-    background: var(--cyan);
-    animation: glitch-a 4.2s infinite steps(1);
-}
-
-/* A lift on the orange so the copy's offset edge is legible against the fill. */
-.hero-action-primary::after {
-    background: #ffb866;
-    animation: glitch-b 4.2s infinite steps(1);
-}
-
-/* ---------- Page layout ---------- */
-
-.container {
-    max-width: var(--page);
-    margin: 0 auto;
-    padding: 56px var(--gutter) 0;
-}
-
-/* Surfaces carry the horizon's grid as a faint texture. */
-.panel {
-    padding: clamp(28px, 5vw, 56px);
-    margin-bottom: 28px;
-    border: 1px solid rgba(253, 137, 37, 0.3);
-    border-radius: 10px;
-    background:
-        linear-gradient(rgba(253, 137, 37, 0.045) 1px, transparent 1px) 0 0 / 44px 44px,
-        linear-gradient(90deg, rgba(253, 137, 37, 0.045) 1px, transparent 1px) 0 0 / 44px 44px,
-        linear-gradient(160deg, rgba(253, 137, 37, 0.11), rgba(14, 12, 12, 0.92) 55%);
-}
-
-.section-heading {
-    font-family: var(--display);
-    font-size: clamp(1.5rem, 3.2vw, 2.25rem);
-    font-weight: 400;
-    line-height: 1.25;
-    color: var(--orange);
-    margin-bottom: 28px;
-}
-
-.section-heading.accent-cyan {
-    color: var(--cyan);
-}
-
-/* ---------- About ---------- */
-
-#about {
-    display: grid;
-    grid-template-columns: 220px minmax(0, 1fr);
-    gap: clamp(28px, 5vw, 56px);
-    align-items: start;
-}
-
-.profile-photo {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 1;
-    object-fit: cover;
-    border-radius: 6px;
-    border: 1px solid rgba(253, 137, 37, 0.5);
-}
-
-.prose p {
-    color: #c9c5be;
-    font-size: 1.125rem;
-    line-height: 1.7;
-}
-
-.prose p + p {
-    margin-top: 1.1em;
-}
-
-.prose .section-heading + p {
-    color: var(--ink);
-    font-size: clamp(1.3rem, 2.4vw, 1.6rem);
-    font-weight: 500;
-    line-height: 1.36;
-}
-
-/* ---------- Capabilities ---------- */
-
-.capabilities {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    justify-content: space-between;
     gap: 16px;
-}
-
-.capability {
-    padding: 20px;
-    border-top: 2px solid var(--orange);
-    border-radius: 0 0 6px 6px;
-    background: rgba(253, 137, 37, 0.09);
-    transition: background 0.2s ease;
-}
-
-.capability:hover {
-    background: rgba(253, 137, 37, 0.17);
-}
-
-.capability h3 {
-    font-family: var(--display);
-    font-size: 0.9375rem;
-    font-weight: 400;
-    margin-bottom: 12px;
-}
-
-.capability li {
     font-family: var(--mono);
-    font-size: 0.875rem;
-    line-height: 1.85;
-    color: #c9c5be;
+    font-size: 0.8125rem;
+    margin-bottom: clamp(72px, 14vh, 150px);
 }
 
-/* ---------- Selected work: the career line ----------
-   The spine has a dim track and a lit copy that follows the scroll. Each stop
-   puts its card on one side of the line and its year on the other. */
+.byline span { color: var(--ink-dim); }
 
-.work {
-    padding: 64px 0 56px;
+h1 {
+    max-width: 13em;
+    text-wrap: balance;
+    font-size: clamp(2.75rem, 8vw, 7.25rem);
+    font-weight: 500;
+    line-height: 0.98;
+    letter-spacing: -0.035em;
 }
 
-.work .section-heading {
-    text-align: center;
-    margin-bottom: 44px;
-}
+/* ---------- The line ---------- */
 
-.timeline {
-    --spine: 1;
-    --gap: 96px;
+.flow {
     position: relative;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 var(--gutter) 96px;
 }
 
-.timeline::before,
-.timeline::after {
-    content: '';
+.wire {
     position: absolute;
     top: 0;
-    bottom: 0;
-    left: 50%;
-    width: 2px;
-    margin-left: -1px;
+    left: 0;
+    pointer-events: none;
 }
 
-.timeline::before {
-    background: var(--rule);
+.wire path { fill: none; }
+
+.wire-track {
+    stroke: var(--hairline);
+    stroke-width: 1;
 }
 
-.timeline::after {
-    background: linear-gradient(to bottom, var(--orange), var(--cyan));
-    transform: scaleY(var(--spine));
-    transform-origin: top;
+.wire-live {
+    stroke: var(--signal);
+    stroke-width: 3;
 }
 
-.timeline-item {
-    position: relative;
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: var(--gap);
-    align-items: center;
-    padding: 14px 0;
-}
-
-.project-card,
-.timeline-year {
-    grid-row: 1;
-}
-
-.timeline-item:nth-child(odd) .project-card { grid-column: 1; }
-.timeline-item:nth-child(odd) .timeline-year { grid-column: 2; }
-.timeline-item:nth-child(even) .project-card { grid-column: 2; }
-.timeline-item:nth-child(even) .timeline-year { grid-column: 1; text-align: right; }
-
-.timeline-year {
-    font-family: var(--display);
-    font-size: clamp(1.75rem, 4vw, 2.75rem);
-    line-height: 1;
-    color: var(--orange);
-}
-
-/* Node on the spine, with a tick reaching toward the card. */
-.timeline-node {
+.port {
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 7px;
+    left: 0;
     z-index: 1;
-    width: 14px;
-    height: 14px;
-    margin: -7px 0 0 -7px;
-    background: var(--bg-0);
-    border: 2px solid var(--orange);
-    transform: rotate(45deg);
+    width: 15px;
+    height: 15px;
+    border: 2px solid var(--ink);
+    border-radius: 50%;
+    background: var(--paper);
+    transition: background 0.2s ease, border-color 0.2s ease;
 }
 
-.timeline-item::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    width: calc(var(--gap) / 2);
-    height: 1px;
-    background: var(--orange);
+.port.is-lit {
+    border-color: var(--signal);
+    background: var(--signal);
 }
 
-.timeline-item:nth-child(odd)::before { right: 50%; }
-.timeline-item:nth-child(even)::before { left: 50%; }
+/* ---------- Stops ---------- */
 
-.project-card {
-    padding: 22px 24px;
-    border: 1px solid rgba(0, 255, 204, 0.26);
-    border-radius: 8px;
-    background: linear-gradient(160deg, rgba(0, 255, 204, 0.11), rgba(10, 16, 15, 0.95) 65%);
-    transition: border-color 0.2s ease;
+.stop {
+    position: relative;
+    padding-left: 36px;
+    margin-top: 104px;
 }
 
-.project-card:hover {
-    border-color: var(--cyan);
-}
+.stops .stop { max-width: 480px; }
+.stops .stop.is-case { max-width: 960px; }
 
-.project-card h3 {
-    font-family: var(--display);
-    font-size: 1.0625rem;
-    font-weight: 400;
-    margin-bottom: 8px;
-}
+.at-a { margin-left: 0; }
+.at-b { margin-left: 34%; }
+.at-c { margin-left: 62%; }
 
-.project-card p {
-    color: #c9c5be;
-    line-height: 1.5;
-}
+.intro { margin-top: 0; max-width: 720px; }
 
-.project-tech {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-top: 14px;
-}
-
-.project-tech li {
-    padding: 2px 8px;
-    border-radius: 3px;
+.stop-meta {
     font-family: var(--mono);
-    font-size: 0.75rem;
-    color: var(--cyan);
-    background: rgba(0, 255, 204, 0.1);
+    font-size: 0.8125rem;
+    color: var(--ink-dim);
+    margin-bottom: 6px;
 }
 
-/* Today's stop: filled, and the only cyan year. */
-.timeline-item.is-current .timeline-year {
-    color: var(--cyan);
-}
-
-.timeline-item.is-current .timeline-node {
-    background: var(--cyan);
-    border-color: var(--cyan);
-}
-
-.timeline-item.is-current::before {
-    background: var(--cyan);
-}
-
-.timeline-item.is-current .project-card {
-    border-color: var(--cyan);
-}
-
-/* ---------- Contact ---------- */
-
-.contact-intro {
-    max-width: 36rem;
-    font-size: clamp(1.15rem, 2.2vw, 1.375rem);
+.stop-meta span {
+    color: var(--ink);
     font-weight: 500;
-    line-height: 1.4;
-    color: var(--ink);
+    margin-right: 10px;
 }
 
-.contact-email {
-    display: inline-block;
-    margin-top: 32px;
-    font-family: var(--display);
-    font-size: clamp(1rem, 4.6vw, 2.5rem);
-    line-height: 1.3;
+.stop h2,
+.stop h3 {
+    font-weight: 500;
     letter-spacing: -0.02em;
-    color: var(--orange);
-    text-decoration: none;
-    border-bottom: 1px solid currentColor;
-    transition: color 0.2s ease;
+    line-height: 1.1;
 }
 
-.contact-email:hover {
-    color: var(--cyan);
-}
+.stop h2 { font-size: clamp(1.75rem, 3.6vw, 2.75rem); margin-bottom: 20px; }
+.stop h3 { font-size: 1.5rem; margin-bottom: 6px; }
+.stop.is-case h3 { font-size: clamp(1.75rem, 3.6vw, 2.75rem); margin-bottom: 24px; }
 
-.social-links {
+.stop p { color: var(--ink-dim); }
+
+.intro-body {
     display: flex;
-    gap: 28px;
-    margin-top: 28px;
+    gap: 24px;
+    align-items: flex-start;
 }
 
-.social-link {
+.intro-body img {
+    flex: 0 0 auto;
+    filter: grayscale(1);
+}
+
+.intro-body p { color: var(--ink); }
+
+.stop .results-title {
+    margin: 32px 0 8px;
     font-family: var(--mono);
-    font-size: 0.875rem;
-    color: var(--ink);
-    text-underline-offset: 4px;
-    transition: color 0.2s ease;
+    font-size: 0.8125rem;
+    font-weight: 400;
+    letter-spacing: 0;
 }
 
-.social-link:hover {
-    color: var(--cyan);
+.results {
+    list-style: none;
+    border-top: 1px solid var(--ink);
 }
 
-/* ---------- Footer ---------- */
-
-.footer {
-    padding: 28px 0 40px;
-    border-top: 1px solid var(--rule);
+.results li {
+    padding: 9px 0;
+    border-bottom: 1px solid var(--hairline);
+    font-size: 1.1875rem;
+    line-height: 1.3;
 }
 
-.footer p {
+.stack {
+    margin-top: 24px;
     font-family: var(--mono);
-    font-size: 0.75rem;
+    font-size: 0.8125rem;
+    line-height: 1.8;
+}
+
+.stop-points {
+    list-style: none;
     color: var(--ink-dim);
 }
 
-/* ---------- Back to top ---------- */
-
-.back-to-top {
-    position: fixed;
-    right: 24px;
-    bottom: 24px;
-    z-index: 4;
-    width: 36px;
-    height: 36px;
-    border: 1px solid rgba(0, 255, 204, 0.6);
-    border-radius: 2px;
-    background: rgba(6, 6, 7, 0.88);
-    color: var(--cyan);
-    cursor: pointer;
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(10px);
-    transition: opacity 0.22s ease, transform 0.22s ease, background 0.22s ease;
+.stop-points li {
+    padding: 5px 0;
+    line-height: 1.35;
+    border-top: 1px solid var(--hairline);
 }
 
-/* Two unfilled pixel chevrons: deliberately no arrow shaft. */
-.back-to-top-icon {
+.stop-points li:first-child {
+    border-top: 0;
+}
+
+.stop .stop-result {
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px solid var(--ink);
+    color: var(--ink);
+    font-weight: 500;
+}
+
+/* ---------- Case studies ---------- */
+
+.case {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 28px;
+    padding-top: 16px;
+    border-top: 1px solid var(--ink);
+}
+
+.case dt {
+    font-family: var(--mono);
+    font-size: 0.8125rem;
+    margin-bottom: 8px;
+}
+
+.case dd { font-size: 1.0625rem; line-height: 1.4; }
+
+/* ---------- The end of the line ---------- */
+
+.end .port.is-lit { background: var(--paper); }
+
+.email {
+    display: inline-block;
+    font-size: clamp(1.75rem, 6vw, 4.5rem);
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: var(--ink);
+    text-decoration-color: var(--signal);
+    text-decoration-thickness: 3px;
+    text-underline-offset: 8px;
+}
+
+.email:hover { color: var(--signal); }
+
+.links {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-    margin-top: 2px;
+    gap: 24px;
+    margin-top: 28px;
+    font-family: var(--mono);
+    font-size: 0.875rem;
 }
 
-.back-to-top-chevron {
-    position: relative;
-    width: 20px;
-    height: 12px;
+.links a { color: var(--ink); text-underline-offset: 4px; }
+
+.links a:hover { color: var(--signal); }
+
+/* ---------- Small screens: the line runs straight down the left ---------- */
+
+@media (max-width: 860px) {
+    .at-a, .at-b, .at-c { margin-left: 0; }
+
+    .stop { margin-top: 72px; padding-left: 30px; }
+
+    .intro { margin-top: 0; }
+
+    .case { grid-template-columns: minmax(0, 1fr); gap: 20px; }
 }
 
-.back-to-top-chevron::before,
-.back-to-top-chevron::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    width: 4px;
-    height: 4px;
-    background: var(--cyan);
-}
-
-.back-to-top-chevron::before {
-    left: 0;
-    box-shadow: 4px -4px var(--cyan), 8px -8px var(--cyan);
-}
-
-.back-to-top-chevron::after {
-    right: 0;
-    box-shadow: -4px -4px var(--cyan), -8px -8px var(--cyan);
-}
-
-.back-to-top.is-visible {
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateY(0);
-}
-
-.back-to-top:hover,
-.back-to-top:focus-visible {
-    background: rgba(0, 255, 204, 0.12);
-}
-
-/* ---------- Scroll reveal ---------- */
-
-.reveal {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-.reveal.is-visible {
-    opacity: 1;
-    transform: none;
-}
-
-/* ---------- Scrollbar & selection ---------- */
-
-::-webkit-scrollbar {
-    width: 10px;
-}
-
-::-webkit-scrollbar-track {
-    background: var(--bg-0);
-}
-
-::-webkit-scrollbar-thumb {
-    background: rgba(241, 238, 232, 0.2);
-    border: 2px solid var(--bg-0);
-}
-
-::selection {
-    background: var(--orange);
-    color: var(--bg-0);
-}
-
-/* ---------- Responsive ---------- */
-
-@media (max-width: 900px) {
-    .capabilities { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-
-    #about { grid-template-columns: minmax(0, 1fr); }
-
-    .profile-photo { width: 132px; }
-
-    /* The spine moves to the left edge; the year joins the card's side. */
-    .timeline { --gap: 28px; }
-
-    .timeline::before,
-    .timeline::after { left: 7px; }
-
-    .timeline-item,
-    .timeline-item:nth-child(odd),
-    .timeline-item:nth-child(even) {
-        display: block;
-        padding: 12px 0 12px var(--gap);
-    }
-
-    .timeline-item:nth-child(even) .timeline-year {
-        text-align: left;
-    }
-
-    .timeline-year {
-        display: block;
-        margin-bottom: 10px;
-        font-size: 1.375rem;
-    }
-
-    .timeline-node {
-        top: 24px;
-        left: 7px;
-        margin-top: 0;
-    }
-
-    .timeline-item:nth-child(odd)::before,
-    .timeline-item:nth-child(even)::before {
-        top: 31px;
-        left: 7px;
-        right: auto;
-        width: 18px;
-    }
-}
-
-@media (max-width: 768px) {
-    /* === Maximum performance on mobile ===
-       Fast scrolling makes mobile browsers repaint animated layers late, which
-       flashes through as white glitches. The grid stays, but static: with no
-       animation it is a plain painted layer that scrolls with the hero. */
-    .ground::after {
-        animation: none;
-        transform: rotateX(72deg);
-        will-change: auto;
-    }
-
-    /* clip-path glitch repaints the title constantly — skip it. */
-    .glitch-title::before,
-    .glitch-title::after,
-    .hero-action-primary::before,
-    .hero-action-primary::after { display: none; }
-
-    /* The hero sizes to its copy, on a shorter strip of ground. */
-    .hero {
-        --ground: 104px;
-        justify-content: flex-start;
-        min-height: 0;
-    }
-
-    .hero-copy {
-        padding-top: 56px;
-        padding-bottom: calc(var(--ground) + 44px);
-    }
-
-    .subtitle { min-height: 3.2em; }
-
-    /* Stacked full-width buttons: pin the transport legends to the right so
-       they line up in a column, the way keys do on a deck's faceplate. */
-    .hero-actions { flex-direction: column; align-items: stretch; width: min(100%, 320px); margin-left: auto; margin-right: auto; }
-
-    .hero-action { justify-content: space-between; }
-
-    .hero-action .control-icon { margin-left: auto; }
-
-    /* Equal padding is what lets the two legends line up. */
-    .hero-action-primary { padding-left: 16px; padding-right: 16px; }
-
-    .back-to-top {
-        right: 16px;
-        bottom: 16px;
-    }
-}
-
-/* ---------- Motion preferences ---------- */
-
-@media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-        animation-duration: 0.001ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.001ms !important;
-        scroll-behavior: auto !important;
-    }
-
-    /* Without the running animation the glitch layers fall back to opacity:1
-       and cover the title and the CTA fill — hide them and keep the clean
-       heading and a flat orange button. */
-    .glitch-title::before,
-    .glitch-title::after,
-    .hero-action-primary::before,
-    .hero-action-primary::after { display: none; }
+@media (max-width: 480px) {
+    .intro-body { flex-direction: column; }
+    .byline { flex-direction: column; gap: 0; }
 }
