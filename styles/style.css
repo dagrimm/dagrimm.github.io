@@ -1,28 +1,25 @@
 /* ============================================================
    David Grimm — Outrun, refined.
-   Retro-80s-futuristic synthwave, modernized.
+   A tape-deck hero on a glowing horizon, and a career line
+   running down the page.
+   Orange is the identity; cyan is anything live or operable.
    ============================================================ */
 
 :root {
     --orange: #fd8925;
-    --orange-soft: rgba(253, 137, 37, 0.14);
     --cyan: #00ffcc;
-    --cyan-soft: rgba(0, 255, 204, 0.12);
 
-    --bg-0: #07060d;
-    --bg-1: #0b0814;
-    --ink: #f4f1ff;
-    --ink-dim: #b7b2cc;
+    --bg-0: #060607;
+    --ink: #f1eee8;
+    --ink-dim: #a8a59f;
+    --rule: rgba(241, 238, 232, 0.14);
 
-    --panel-bg: rgba(15, 12, 24, 0.55);
-    --panel-border: rgba(253, 137, 37, 0.35);
-
-    --display: 'Orbitron', sans-serif;
-    --pixel: 'Press Start 2P', monospace;
+    --display: 'Michroma', 'Eurostile', sans-serif;
+    --text: 'Barlow', 'Helvetica Neue', Arial, sans-serif;
     --mono: 'Space Mono', 'Courier New', monospace;
 
-    --radius: 16px;
-    --shadow-neon: 0 0 24px rgba(253, 137, 37, 0.18);
+    --page: 1180px;
+    --gutter: clamp(20px, 5vw, 64px);
 }
 
 * {
@@ -33,51 +30,105 @@
 
 html {
     scroll-behavior: smooth;
-    /* Solid dark base so a lagging fixed layer can never flash white. */
+    /* Solid dark base so nothing can ever flash white behind the page. */
     background-color: var(--bg-0);
 }
 
 body {
-    background: radial-gradient(1200px 700px at 50% -10%, #141318 0%, var(--bg-1) 45%, var(--bg-0) 100%);
+    /* Blooms scroll with the page: painted once, nothing to repaint. */
+    background:
+        radial-gradient(760px 620px at 100% 1000px, rgba(253, 137, 37, 0.13), transparent 70%),
+        radial-gradient(820px 700px at 0% 1750px, rgba(0, 255, 204, 0.09), transparent 70%),
+        radial-gradient(820px 760px at 100% 2700px, rgba(0, 255, 204, 0.08), transparent 70%),
+        var(--bg-0);
     color: var(--ink);
-    font-family: var(--display);
+    font-family: var(--text);
+    font-size: 1.0625rem;
+    line-height: 1.6;
     min-height: 100vh;
     overflow-x: hidden;
-    position: relative;
     -webkit-font-smoothing: antialiased;
 }
 
-.body-text {
-    font-family: var(--mono);
-    letter-spacing: 0.01em;
+ul,
+ol {
+    list-style: none;
 }
 
-/* ---------- Atmosphere layers ---------- */
+img {
+    display: block;
+}
 
-/* Synthwave perspective grid anchored to the horizon */
-.bg-grid {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    perspective: 320px;
-    perspective-origin: 50% 0%;
+:focus-visible {
+    outline: 2px solid var(--cyan);
+    outline-offset: 3px;
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+    --ground: clamp(130px, 24vh, 260px);
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: min(100vh, 1080px);
+    min-height: min(100svh, 1080px);
     overflow: hidden;
-    opacity: 0.5;
-    mask-image: linear-gradient(to bottom, transparent 55%, #000 78%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom, transparent 55%, #000 78%, transparent 100%);
 }
 
-.bg-grid::after {
+.hero-scene {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+/* Light rising off the horizon: the only glow on the page. */
+.hero-scene::before {
     content: '';
     position: absolute;
-    left: -50%;
-    right: -50%;
-    bottom: -10%;
-    height: 130%;
+    left: 0;
+    right: 0;
+    bottom: var(--ground);
+    height: 60%;
+    background: radial-gradient(62% 100% at 50% 100%, rgba(253, 137, 37, 0.3), transparent 72%);
+}
+
+.hero-scene::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: var(--ground);
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--orange) 22%, #ffe0b0 50%, var(--orange) 78%, transparent);
+}
+
+.ground {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: var(--ground);
+    overflow: hidden;
+    perspective: 320px;
+    perspective-origin: 50% 0;
+    /* Faded at both ends: lines alias into noise as they converge on the horizon. */
+    mask-image: linear-gradient(to bottom, transparent 4%, #000 34%, #000 55%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 4%, #000 34%, #000 55%, transparent 100%);
+}
+
+.ground::after {
+    content: '';
+    position: absolute;
+    left: -100%;
+    right: -100%;
+    bottom: 0;
+    height: 400%;
     background-image:
-        linear-gradient(rgba(0, 255, 204, 0.45) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(253, 137, 37, 0.4) 1px, transparent 1px);
+        linear-gradient(rgba(0, 255, 204, 0.5) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(253, 137, 37, 0.45) 1px, transparent 1px);
     background-size: 56px 56px;
     transform-origin: 50% 100%;
     /* Animate via GPU transform (composited) rather than background-position
@@ -92,109 +143,28 @@ body {
     to   { transform: rotateX(72deg) translate3d(0, 56px, 0); }
 }
 
-/* Ambient color blooms */
-.bg-glow {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    background:
-        radial-gradient(420px 420px at 12% 18%, rgba(253, 137, 37, 0.10), transparent 70%),
-        radial-gradient(480px 480px at 88% 30%, rgba(0, 255, 204, 0.10), transparent 70%),
-        radial-gradient(600px 600px at 50% 110%, rgba(0, 255, 204, 0.08), transparent 70%);
-}
-
-/* CRT scanlines */
-.scanlines {
-    position: fixed;
-    inset: 0;
-    z-index: 3;
-    pointer-events: none;
-    background: repeating-linear-gradient(
-        0deg,
-        rgba(0, 0, 0, 0) 0px,
-        rgba(0, 0, 0, 0) 2px,
-        rgba(0, 0, 0, 0.22) 3px,
-        rgba(0, 0, 0, 0) 4px
-    );
-    mix-blend-mode: multiply;
-    /* Keep the CRT texture without making the reading layer feel muted. */
-    opacity: 0.28;
-}
-
-/* Edge vignette for CRT depth */
-.vignette {
-    position: fixed;
-    inset: 0;
-    z-index: 3;
-    pointer-events: none;
-    box-shadow: inset 0 0 220px rgba(0, 0, 0, 0.9);
-}
-
-/* Rising glow particles */
-.floating-elements {
-    position: fixed;
-    inset: 0;
-    z-index: 1;
-    pointer-events: none;
-}
-
-.floating-element {
-    position: absolute;
-    bottom: -8px;
-    width: 3px;
-    height: 3px;
-    border-radius: 50%;
-    background: var(--cyan);
-    box-shadow: 0 0 8px 2px rgba(0, 255, 204, 0.8);
-    animation: float 22s infinite linear;
-    will-change: transform, opacity;
-}
-
-.floating-element:nth-child(even) {
-    background: var(--orange);
-    box-shadow: 0 0 8px 2px rgba(253, 137, 37, 0.8);
-}
-
-@keyframes float {
-    0%   { transform: translateY(0) scale(1);   opacity: 0; }
-    8%   { opacity: 1; }
-    92%  { opacity: 1; }
-    100% { transform: translateY(-102vh) scale(0.4); opacity: 0; }
-}
-
-/* ---------- Layout ---------- */
-
-.container {
-    max-width: 1140px;
-    margin: 0 auto;
-    padding: 24px 24px 0;
+.hero-copy {
     position: relative;
-    z-index: 2;
-}
-
-/* ---------- Hero ---------- */
-
-.hero {
+    width: 100%;
+    max-width: var(--page);
+    margin: 0 auto;
+    padding: 64px var(--gutter) calc(var(--ground) + 36px);
     text-align: center;
-    padding: 92px 0 64px;
 }
 
 .kicker {
-    font-family: var(--pixel);
-    font-size: 0.62rem;
-    line-height: 1.8;
-    letter-spacing: 0.12em;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
     color: var(--cyan);
-    text-shadow: 0 0 12px rgba(0, 255, 204, 0.6);
-    margin-bottom: 28px;
+    margin-bottom: 26px;
 }
 
 /* ---- Hero boot line ----
    The dots fill in one at a time while the subtitle types itself out, then JS
    adds .is-done and the line settles on "... DONE". Both the dots and DONE are
    hidden with opacity/visibility rather than display, so the space is held from
-   the first paint and the centred line never jumps when DONE lands. */
+   the first paint and the line never jumps when DONE lands. */
 .kicker-dots span {
     animation: kicker-dot-1 1.4s steps(1) infinite;
 }
@@ -225,17 +195,16 @@ body {
 }
 
 .glitch-title {
-    font-size: clamp(2.6rem, 9vw, 5.4rem);
-    font-weight: 900;
+    font-family: var(--display);
+    font-size: clamp(2.75rem, 6.7vw, 5.75rem);
+    font-weight: 400;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
-    line-height: 0.95;
+    letter-spacing: -0.02em;
+    line-height: 1.04;
     color: var(--orange);
     position: relative;
-    display: inline-block;
-    text-shadow:
-        0 0 18px rgba(253, 137, 37, 0.55),
-        0 0 42px rgba(253, 137, 37, 0.25);
+    width: fit-content;
+    margin: 0 auto;
 }
 
 /* Chromatic-aberration glitch — subtle, occasional */
@@ -244,18 +213,17 @@ body {
     content: attr(data-text);
     position: absolute;
     inset: 0;
+    white-space: pre;
     pointer-events: none;
 }
 
 .glitch-title::before {
     color: var(--cyan);
-    text-shadow: 0 0 12px rgba(0, 255, 204, 0.5);
     animation: glitch-a 4.2s infinite steps(1);
 }
 
 .glitch-title::after {
     color: var(--orange);
-    text-shadow: 0 0 12px rgba(253, 137, 37, 0.5);
     animation: glitch-b 4.2s infinite steps(1);
 }
 
@@ -273,12 +241,12 @@ body {
 
 .subtitle {
     font-family: var(--mono);
-    font-size: clamp(0.85rem, 2.2vw, 1.05rem);
-    letter-spacing: 0.18em;
+    font-size: 0.8125rem;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--ink-dim);
+    color: var(--ink);
     margin-top: 24px;
-    min-height: 1.5em; /* reserve space so typewriter doesn't shift layout */
+    min-height: 1.6em; /* reserve space so typewriter doesn't shift layout */
 }
 
 /* Blinking terminal caret while the subtitle types out */
@@ -290,7 +258,6 @@ body {
     margin-left: 2px;
     transform: translateY(0.12em);
     background: var(--cyan);
-    box-shadow: 0 0 8px rgba(0, 255, 204, 0.7);
     animation: caret-blink 0.8s steps(1) infinite;
 }
 
@@ -300,24 +267,34 @@ body {
 }
 
 .hero-status {
-    display: inline-flex;
+    display: flex;
+    justify-content: center;
     align-items: center;
     gap: 10px;
-    margin-top: 32px;
-    padding: 9px 18px;
-    border: 1px solid rgba(0, 255, 204, 0.35);
-    border-radius: 999px;
-    background: rgba(0, 255, 204, 0.05);
-    font-size: 0.8rem;
+    margin-top: 10px;
+    font-family: var(--mono);
+    font-size: 0.8125rem;
     color: var(--cyan);
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+    background: var(--cyan);
+    animation: pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.35; }
 }
 
 .hero-actions {
     display: flex;
     justify-content: center;
-    gap: 12px;
+    gap: 10px;
     flex-wrap: wrap;
-    margin-top: 22px;
+    margin-top: 28px;
 }
 
 .hero-action {
@@ -325,14 +302,19 @@ body {
     align-items: center;
     justify-content: center;
     color: var(--ink);
-    font-size: 0.78rem;
-    letter-spacing: 0.04em;
+    font-family: var(--mono);
+    font-size: 0.8125rem;
     text-decoration: none;
     padding: 11px 16px;
-    border: 1px solid rgba(244, 241, 255, 0.28);
-    border-radius: 999px;
-    background: rgba(244, 241, 255, 0.03);
-    transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+    border: 1px solid rgba(241, 238, 232, 0.3);
+    border-radius: 2px;
+    background: rgba(6, 6, 7, 0.6);
+    transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+/* Keys press in; they don't float. */
+.hero-action:active {
+    transform: translateY(1px);
 }
 
 /* ---- Hero transport controls ----
@@ -407,31 +389,27 @@ body {
    back-to-top key — instead of competing with the label at full ink. */
 .hero-action .control-icon {
     color: var(--cyan);
-    filter: drop-shadow(0 0 3px rgba(0, 255, 204, 0.35));
 }
 
 .hero-action-primary .control-icon {
-    color: rgba(7, 6, 13, 0.82);
-    filter: none;
+    color: rgba(6, 6, 7, 0.82);
 }
 
 .hero-action:hover {
-    transform: translateY(-3px);
     border-color: var(--cyan);
-    background: rgba(0, 255, 204, 0.08);
-    box-shadow: 0 10px 24px rgba(0, 255, 204, 0.16);
+    background: rgba(0, 255, 204, 0.1);
 }
 
 /* Starting a conversation is the ask; browsing the work is the alternative.
-   The primary carries the fill, the bolder label and the wider gutters, so the
-   pair reads as one loud key and one quiet one. */
+   The primary carries the fill and the bolder label, so the pair reads as one
+   loud key and one quiet one. */
 .hero-action-primary {
     color: var(--bg-0);
     font-weight: 700;
-    padding: 11px 24px;
+    padding-left: 20px;
+    padding-right: 20px;
     border-color: var(--orange);
     background: var(--orange);
-    box-shadow: 0 0 26px rgba(253, 137, 37, 0.38);
     /* Own stacking context, so the glitch copies below can sit at z-index -1. */
     position: relative;
     z-index: 0;
@@ -440,11 +418,10 @@ body {
 .hero-action-primary:hover {
     border-color: var(--orange);
     background: #ffa143;
-    box-shadow: 0 10px 30px rgba(253, 137, 37, 0.45);
 }
 
 /* The fill runs the title's chromatic-aberration glitch — the same keyframes
-   on the same 4.2s cycle — so the pill tears when the name does. On the title
+   on the same 4.2s cycle — so the key tears when the name does. On the title
    the orange thing that splits is the lettering; here it is the button face.
    The copies sit at z-index -1: painted over the button's own fill but under
    the label, so the orange behind the text splits and the text stays crisp. */
@@ -472,469 +449,314 @@ body {
     animation: glitch-b 4.2s infinite steps(1);
 }
 
-.hero-action-secondary {
-    color: var(--ink-dim);
-    border-color: rgba(244, 241, 255, 0.18);
+/* ---------- Page layout ---------- */
+
+.container {
+    max-width: var(--page);
+    margin: 0 auto;
+    padding: 56px var(--gutter) 0;
 }
 
-.hero-action-secondary:hover {
-    color: var(--ink);
-}
-
-.status-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--cyan);
-    box-shadow: 0 0 10px 2px rgba(0, 255, 204, 0.8);
-    animation: pulse 1.8s ease-in-out infinite;
-}
-
-@keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50%      { opacity: 0.4; transform: scale(0.7); }
-}
-
-/* ---------- Panels ---------- */
-
+/* Surfaces carry the horizon's grid as a faint texture. */
 .panel {
-    position: relative;
-    border: 1px solid var(--panel-border);
-    border-radius: var(--radius);
-    padding: 48px;
-    margin-bottom: 44px;
-    background: var(--panel-bg);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    box-shadow:
-        var(--shadow-neon),
-        inset 0 0 60px rgba(253, 137, 37, 0.04);
+    padding: clamp(28px, 5vw, 56px);
+    margin-bottom: 28px;
+    border: 1px solid rgba(253, 137, 37, 0.3);
+    border-radius: 10px;
+    background:
+        linear-gradient(rgba(253, 137, 37, 0.045) 1px, transparent 1px) 0 0 / 44px 44px,
+        linear-gradient(90deg, rgba(253, 137, 37, 0.045) 1px, transparent 1px) 0 0 / 44px 44px,
+        linear-gradient(160deg, rgba(253, 137, 37, 0.11), rgba(14, 12, 12, 0.92) 55%);
 }
-
-/* Corner ticks for that techy HUD feel */
-.panel::before,
-.panel::after {
-    content: '';
-    position: absolute;
-    width: 18px;
-    height: 18px;
-    border-color: var(--orange);
-    border-style: solid;
-    opacity: 0.8;
-}
-
-.panel::before {
-    top: 14px;
-    left: 14px;
-    border-width: 2px 0 0 2px;
-}
-
-.panel::after {
-    bottom: 14px;
-    right: 14px;
-    border-width: 0 2px 2px 0;
-}
-
-.panel-label {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 30px;
-    font-family: var(--pixel);
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-}
-
-.panel-num {
-    color: var(--bg-0);
-    background: var(--orange);
-    padding: 6px 8px;
-    border-radius: 5px;
-    box-shadow: 0 0 14px rgba(253, 137, 37, 0.5);
-}
-
-.panel-name {
-    color: var(--orange);
-    letter-spacing: 0.24em;
-}
-
-.panel-label.cyan .panel-num {
-    background: var(--cyan);
-    box-shadow: 0 0 14px rgba(0, 255, 204, 0.5);
-}
-
-.panel-label.cyan .panel-name {
-    color: var(--cyan);
-}
-
-/* ---------- Headings ---------- */
 
 .section-heading {
     font-family: var(--display);
-    font-weight: 700;
-    font-size: clamp(1.7rem, 4vw, 2.4rem);
-    letter-spacing: 0.02em;
-    margin-bottom: 22px;
-    color: var(--ink);
-}
-
-.section-heading.centered {
-    text-align: center;
-}
-
-.section-heading.accent-orange {
+    font-size: clamp(1.5rem, 3.2vw, 2.25rem);
+    font-weight: 400;
+    line-height: 1.25;
     color: var(--orange);
-    text-shadow: 0 0 22px rgba(253, 137, 37, 0.4);
-    margin-bottom: 38px;
+    margin-bottom: 28px;
 }
 
 .section-heading.accent-cyan {
     color: var(--cyan);
-    text-shadow: 0 0 22px rgba(0, 255, 204, 0.4);
-    margin-bottom: 38px;
 }
 
-/* ---------- About / profile ---------- */
+/* ---------- About ---------- */
 
-.profile-section {
-    display: flex;
-    align-items: center;
-    gap: 48px;
-    flex-wrap: wrap;
-}
-
-.profile-image-wrap {
-    position: relative;
-    width: 200px;
-    height: 200px;
-    flex-shrink: 0;
-}
-
-.profile-image {
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    background-image: url('../assets/david_grimm.jpg');
-    background-size: cover;
-    background-position: center;
-    border: 2px solid rgba(253, 137, 37, 0.6);
-    box-shadow:
-        0 0 28px rgba(253, 137, 37, 0.4),
-        inset 0 0 18px rgba(0, 0, 0, 0.4);
-}
-
-.profile-text {
-    flex: 1;
-    min-width: 300px;
-}
-
-.profile-text p {
-    font-size: 1.02rem;
-    line-height: 1.85;
-    margin-bottom: 16px;
-    color: var(--ink-dim);
-}
-
-.profile-text p:last-child {
-    margin-bottom: 0;
-}
-
-/* ---------- Skills ---------- */
-
-.skills-grid {
+#about {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: 20px;
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap: clamp(28px, 5vw, 56px);
+    align-items: start;
 }
 
-.skill-card {
-    border: 1px solid rgba(253, 137, 37, 0.3);
-    border-radius: 12px;
-    padding: 26px 22px;
-    text-align: center;
-    background: rgba(253, 137, 37, 0.04);
-    transition: transform 0.32s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.32s ease, border-color 0.32s ease, background 0.32s ease;
-    position: relative;
-    overflow: hidden;
+.profile-photo {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid rgba(253, 137, 37, 0.5);
 }
 
-.skill-card::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--orange), transparent);
-    transform: scaleX(0);
-    transition: transform 0.32s ease;
+.prose p {
+    color: #c9c5be;
+    font-size: 1.125rem;
+    line-height: 1.7;
 }
 
-.skill-card:hover {
-    transform: translateY(-6px);
-    border-color: var(--orange);
-    background: rgba(253, 137, 37, 0.10);
-    box-shadow: 0 14px 38px rgba(253, 137, 37, 0.22), 0 0 18px rgba(253, 137, 37, 0.25);
+.prose p + p {
+    margin-top: 1.1em;
 }
 
-.skill-card:hover::after {
-    transform: scaleX(1);
+.prose .section-heading + p {
+    color: var(--ink);
+    font-size: clamp(1.3rem, 2.4vw, 1.6rem);
+    font-weight: 500;
+    line-height: 1.36;
 }
 
-.skill-card h3 {
-    color: var(--orange);
-    font-size: 1.15rem;
-    font-weight: 700;
-    letter-spacing: 0.02em;
+/* ---------- Capabilities ---------- */
+
+.capabilities {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.capability {
+    padding: 20px;
+    border-top: 2px solid var(--orange);
+    border-radius: 0 0 6px 6px;
+    background: rgba(253, 137, 37, 0.09);
+    transition: background 0.2s ease;
+}
+
+.capability:hover {
+    background: rgba(253, 137, 37, 0.17);
+}
+
+.capability h3 {
+    font-family: var(--display);
+    font-size: 0.9375rem;
+    font-weight: 400;
     margin-bottom: 12px;
 }
 
-.skill-card p {
-    color: var(--ink-dim);
-    font-size: 0.86rem;
-    line-height: 1.6;
+.capability li {
+    font-family: var(--mono);
+    font-size: 0.875rem;
+    line-height: 1.85;
+    color: #c9c5be;
 }
 
-/* ---------- Projects ---------- */
+/* ---------- Selected work: the career line ----------
+   The spine has a dim track and a lit copy that follows the scroll. Each stop
+   puts its card on one side of the line and its year on the other. */
 
-/* ---------- Projects timeline ---------- */
+.work {
+    padding: 64px 0 56px;
+}
+
+.work .section-heading {
+    text-align: center;
+    margin-bottom: 44px;
+}
 
 .timeline {
+    --spine: 1;
+    --gap: 96px;
     position: relative;
-    margin: 12px 0 8px;
-    padding: 8px 0;
 }
 
-/* The glowing career spine down the centre */
-.timeline::before {
+.timeline::before,
+.timeline::after {
     content: '';
     position: absolute;
     top: 0;
     bottom: 0;
     left: 50%;
     width: 2px;
-    transform: translateX(-50%);
-    background: linear-gradient(180deg,
-        transparent 0%,
-        var(--cyan) 12%,
-        var(--orange) 88%,
-        transparent 100%);
-    box-shadow: 0 0 14px rgba(0, 255, 204, 0.45);
+    margin-left: -1px;
+}
+
+.timeline::before {
+    background: var(--rule);
+}
+
+.timeline::after {
+    background: linear-gradient(to bottom, var(--orange), var(--cyan));
+    transform: scaleY(var(--spine));
+    transform-origin: top;
 }
 
 .timeline-item {
     position: relative;
-    width: 50%;
-    padding: 16px 44px;
-    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--gap);
+    align-items: center;
+    padding: 14px 0;
 }
 
-.timeline-item:nth-child(odd) {
-    left: 0;
+.project-card,
+.timeline-year {
+    grid-row: 1;
 }
 
-.timeline-item:nth-child(even) {
-    left: 50%;
+.timeline-item:nth-child(odd) .project-card { grid-column: 1; }
+.timeline-item:nth-child(odd) .timeline-year { grid-column: 2; }
+.timeline-item:nth-child(even) .project-card { grid-column: 2; }
+.timeline-item:nth-child(even) .timeline-year { grid-column: 1; text-align: right; }
+
+.timeline-year {
+    font-family: var(--display);
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    line-height: 1;
+    color: var(--orange);
 }
 
-/* Node sitting on the spine */
+/* Node on the spine, with a tick reaching toward the card. */
 .timeline-node {
     position: absolute;
-    top: 34px;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    width: 14px;
+    height: 14px;
+    margin: -7px 0 0 -7px;
     background: var(--bg-0);
-    border: 2px solid var(--cyan);
-    box-shadow: 0 0 12px rgba(0, 255, 204, 0.7);
-    z-index: 2;
+    border: 2px solid var(--orange);
+    transform: rotate(45deg);
 }
 
-.timeline-item:nth-child(odd) .timeline-node {
-    right: -8px;
-}
-
-.timeline-item:nth-child(even) .timeline-node {
-    left: -8px;
-    border-color: var(--orange);
-    box-shadow: 0 0 12px rgba(253, 137, 37, 0.7);
-}
-
-/* Connector from card to spine */
 .timeline-item::before {
     content: '';
     position: absolute;
-    top: 41px;
-    width: 30px;
-    height: 2px;
-    background: rgba(0, 255, 204, 0.4);
-    z-index: 1;
+    top: 50%;
+    width: calc(var(--gap) / 2);
+    height: 1px;
+    background: var(--orange);
 }
 
-.timeline-item:nth-child(odd)::before {
-    right: 14px;
-}
-
-.timeline-item:nth-child(even)::before {
-    left: 14px;
-    background: rgba(253, 137, 37, 0.4);
-}
-
-.timeline-item .project-card {
-    height: 100%;
-}
+.timeline-item:nth-child(odd)::before { right: 50%; }
+.timeline-item:nth-child(even)::before { left: 50%; }
 
 .project-card {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid rgba(0, 255, 204, 0.3);
-    border-radius: 12px;
-    padding: 26px;
-    background: rgba(0, 255, 204, 0.04);
-    transition: transform 0.32s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.32s ease, border-color 0.32s ease, background 0.32s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.project-card::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--cyan), transparent);
-    transform: scaleX(0);
-    transition: transform 0.32s ease;
+    padding: 22px 24px;
+    border: 1px solid rgba(0, 255, 204, 0.26);
+    border-radius: 8px;
+    background: linear-gradient(160deg, rgba(0, 255, 204, 0.11), rgba(10, 16, 15, 0.95) 65%);
+    transition: border-color 0.2s ease;
 }
 
 .project-card:hover {
-    transform: translateY(-6px);
     border-color: var(--cyan);
-    background: rgba(0, 255, 204, 0.09);
-    box-shadow: 0 14px 38px rgba(0, 255, 204, 0.2), 0 0 18px rgba(0, 255, 204, 0.25);
 }
 
-.project-card:hover::after {
-    transform: scaleX(1);
-}
-
-.project-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 14px;
-}
-
-.project-header h3 {
-    color: var(--cyan);
-    font-size: 1.2rem;
-    font-weight: 700;
-}
-
-.project-year {
-    color: var(--orange);
-    font-family: var(--mono);
-    font-size: 0.78rem;
-    background: rgba(253, 137, 37, 0.14);
-    border: 1px solid rgba(253, 137, 37, 0.4);
-    padding: 4px 11px;
-    border-radius: 999px;
-    flex-shrink: 0;
+.project-card h3 {
+    font-family: var(--display);
+    font-size: 1.0625rem;
+    font-weight: 400;
+    margin-bottom: 8px;
 }
 
 .project-card p {
-    color: var(--ink-dim);
-    font-size: 0.92rem;
-    line-height: 1.65;
-    margin-bottom: 20px;
-    flex-grow: 1;
+    color: #c9c5be;
+    line-height: 1.5;
 }
 
 .project-tech {
     display: flex;
     flex-wrap: wrap;
-    gap: 9px;
-    margin-top: auto;
+    gap: 6px;
+    margin-top: 14px;
 }
 
-.tech-tag {
-    color: var(--cyan);
+.project-tech li {
+    padding: 2px 8px;
+    border-radius: 3px;
     font-family: var(--mono);
-    font-size: 0.74rem;
-    background: rgba(0, 255, 204, 0.08);
-    border: 1px solid rgba(0, 255, 204, 0.4);
-    padding: 4px 11px;
-    border-radius: 999px;
-    transition: background 0.25s ease, color 0.25s ease;
+    font-size: 0.75rem;
+    color: var(--cyan);
+    background: rgba(0, 255, 204, 0.1);
 }
 
-.project-card:hover .tech-tag {
-    background: rgba(0, 255, 204, 0.16);
+/* Today's stop: filled, and the only cyan year. */
+.timeline-item.is-current .timeline-year {
+    color: var(--cyan);
+}
+
+.timeline-item.is-current .timeline-node {
+    background: var(--cyan);
+    border-color: var(--cyan);
+}
+
+.timeline-item.is-current::before {
+    background: var(--cyan);
+}
+
+.timeline-item.is-current .project-card {
+    border-color: var(--cyan);
 }
 
 /* ---------- Contact ---------- */
 
-.contact-section {
-    text-align: center;
-    padding: 70px 0 40px;
-}
-
-.contact-section .kicker {
-    color: var(--orange);
-    text-shadow: 0 0 12px rgba(253, 137, 37, 0.6);
-}
-
 .contact-intro {
-    max-width: 580px;
-    margin: -14px auto 28px;
-    color: var(--ink-dim);
-    font-size: 0.95rem;
-    line-height: 1.7;
+    max-width: 36rem;
+    font-size: clamp(1.15rem, 2.2vw, 1.375rem);
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--ink);
+}
+
+.contact-email {
+    display: inline-block;
+    margin-top: 32px;
+    font-family: var(--display);
+    font-size: clamp(1rem, 4.6vw, 2.5rem);
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    color: var(--orange);
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    transition: color 0.2s ease;
+}
+
+.contact-email:hover {
+    color: var(--cyan);
 }
 
 .social-links {
     display: flex;
-    justify-content: center;
-    gap: 18px;
-    flex-wrap: wrap;
-    margin-top: 8px;
+    gap: 28px;
+    margin-top: 28px;
 }
 
 .social-link {
-    color: var(--orange);
-    font-size: 0.95rem;
-    letter-spacing: 0.08em;
-    text-decoration: none;
-    padding: 13px 30px;
-    border: 1px solid rgba(253, 137, 37, 0.5);
-    border-radius: 999px;
-    background: rgba(253, 137, 37, 0.05);
-    transition: transform 0.28s ease, box-shadow 0.28s ease, background 0.28s ease, color 0.28s ease;
+    font-family: var(--mono);
+    font-size: 0.875rem;
+    color: var(--ink);
+    text-underline-offset: 4px;
+    transition: color 0.2s ease;
 }
 
 .social-link:hover {
-    color: var(--bg-0);
-    background: var(--orange);
-    transform: translateY(-4px);
-    box-shadow: 0 12px 28px rgba(253, 137, 37, 0.4), 0 0 18px rgba(253, 137, 37, 0.5);
+    color: var(--cyan);
 }
 
 /* ---------- Footer ---------- */
 
 .footer {
-    text-align: center;
-    padding: 40px 0 56px;
-    border-top: 1px solid rgba(253, 137, 37, 0.25);
-    margin-top: 40px;
+    padding: 28px 0 40px;
+    border-top: 1px solid var(--rule);
 }
 
 .footer p {
+    font-family: var(--mono);
+    font-size: 0.75rem;
     color: var(--ink-dim);
-    font-size: 0.82rem;
-    letter-spacing: 0.04em;
 }
 
 /* ---------- Back to top ---------- */
@@ -947,15 +769,14 @@ body {
     width: 36px;
     height: 36px;
     border: 1px solid rgba(0, 255, 204, 0.6);
-    border-radius: 6px;
-    background: rgba(7, 6, 13, 0.88);
+    border-radius: 2px;
+    background: rgba(6, 6, 7, 0.88);
     color: var(--cyan);
     cursor: pointer;
     opacity: 0;
     pointer-events: none;
     transform: translateY(10px);
-    box-shadow: 0 0 14px rgba(0, 255, 204, 0.18);
-    transition: opacity 0.22s ease, transform 0.22s ease, background 0.22s ease, box-shadow 0.22s ease;
+    transition: opacity 0.22s ease, transform 0.22s ease, background 0.22s ease;
 }
 
 /* Two unfilled pixel chevrons: deliberately no arrow shaft. */
@@ -971,7 +792,6 @@ body {
     position: relative;
     width: 20px;
     height: 12px;
-    filter: drop-shadow(0 0 3px rgba(0, 255, 204, 0.55));
 }
 
 .back-to-top-chevron::before,
@@ -1003,17 +823,14 @@ body {
 .back-to-top:hover,
 .back-to-top:focus-visible {
     background: rgba(0, 255, 204, 0.12);
-    box-shadow: 0 0 20px rgba(0, 255, 204, 0.36);
-    outline: none;
 }
 
 /* ---------- Scroll reveal ---------- */
 
 .reveal {
     opacity: 0;
-    transform: translateY(34px);
-    transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
-    will-change: opacity, transform;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .reveal.is-visible {
@@ -1021,10 +838,10 @@ body {
     transform: none;
 }
 
-/* ---------- Custom scrollbar ---------- */
+/* ---------- Scrollbar & selection ---------- */
 
 ::-webkit-scrollbar {
-    width: 11px;
+    width: 10px;
 }
 
 ::-webkit-scrollbar-track {
@@ -1032,136 +849,103 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: linear-gradient(var(--orange), var(--cyan));
-    border-radius: 99px;
+    background: rgba(241, 238, 232, 0.2);
     border: 2px solid var(--bg-0);
 }
 
 ::selection {
-    background: rgba(253, 137, 37, 0.85);
+    background: var(--orange);
     color: var(--bg-0);
 }
 
 /* ---------- Responsive ---------- */
 
+@media (max-width: 900px) {
+    .capabilities { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+    #about { grid-template-columns: minmax(0, 1fr); }
+
+    .profile-photo { width: 132px; }
+
+    /* The spine moves to the left edge; the year joins the card's side. */
+    .timeline { --gap: 28px; }
+
+    .timeline::before,
+    .timeline::after { left: 7px; }
+
+    .timeline-item,
+    .timeline-item:nth-child(odd),
+    .timeline-item:nth-child(even) {
+        display: block;
+        padding: 12px 0 12px var(--gap);
+    }
+
+    .timeline-item:nth-child(even) .timeline-year {
+        text-align: left;
+    }
+
+    .timeline-year {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 1.375rem;
+    }
+
+    .timeline-node {
+        top: 24px;
+        left: 7px;
+        margin-top: 0;
+    }
+
+    .timeline-item:nth-child(odd)::before,
+    .timeline-item:nth-child(even)::before {
+        top: 31px;
+        left: 7px;
+        right: auto;
+        width: 18px;
+    }
+}
+
 @media (max-width: 768px) {
     /* === Maximum performance on mobile ===
-       Fast scrolling makes mobile browsers repaint animated position:fixed
-       layers asynchronously, which flashes through as white glitches. So on
-       phones we drop every ANIMATED atmosphere layer and bake a static
-       synthwave gradient into <body>, which scrolls with the content.
-
-       The perspective grid stays, but static: with no animation and a 3D
-       transform it lives on its own composited layer the browser just holds
-       in place while content scrolls over it — no per-frame repaint. */
-    .bg-glow,
-    .scanlines,
-    .vignette,
-    .floating-elements { display: none; }
-
-    .bg-grid {
-        opacity: 0.42;
-        transform: translateZ(0); /* promote to a stable composited layer */
-    }
-
-    .bg-grid::after {
+       Fast scrolling makes mobile browsers repaint animated layers late, which
+       flashes through as white glitches. The grid stays, but static: with no
+       animation it is a plain painted layer that scrolls with the hero. */
+    .ground::after {
         animation: none;
-        transform: rotateX(72deg); /* hold the final static perspective */
+        transform: rotateX(72deg);
+        will-change: auto;
     }
 
-    body {
-        background:
-            radial-gradient(520px 520px at 8% 6%, rgba(253, 137, 37, 0.16), transparent 60%),
-            radial-gradient(560px 560px at 96% 16%, rgba(0, 255, 204, 0.14), transparent 60%),
-            radial-gradient(700px 700px at 50% 100%, rgba(0, 255, 204, 0.08), transparent 60%),
-            linear-gradient(180deg, #0a0a0a 0%, #060606 55%, #000000 100%);
-        background-attachment: scroll;
-    }
-
-    /* Drop the per-frame backdrop blur (the costly part), but keep the panel
-       translucent — with no blur this is cheap and lets the static grid and
-       blooms read through, as in the original mobile version. */
-    .panel {
-        backdrop-filter: none;
-        -webkit-backdrop-filter: none;
-        background: rgba(11, 8, 20, 0.8);
-    }
-
-    /* clip-path + text-shadow glitch repaints the title constantly — skip it,
-       keep the static neon glow. */
+    /* clip-path glitch repaints the title constantly — skip it. */
     .glitch-title::before,
     .glitch-title::after,
     .hero-action-primary::before,
     .hero-action-primary::after { display: none; }
 
-    .container { padding: 16px 16px 0; }
-
-    .hero { padding: 60px 0 44px; }
-
-    .panel { padding: 32px 22px; }
-
-    .profile-section {
-        flex-direction: column;
-        text-align: center;
-        gap: 30px;
+    /* The hero sizes to its copy, on a shorter strip of ground. */
+    .hero {
+        --ground: 104px;
+        justify-content: flex-start;
+        min-height: 0;
     }
 
-    .profile-image-wrap {
-        width: 158px;
-        height: 158px;
-        margin: 0 auto;
+    .hero-copy {
+        padding-top: 56px;
+        padding-bottom: calc(var(--ground) + 44px);
     }
 
-    .profile-text { min-width: 100%; }
-
-    .profile-text p { font-size: 0.98rem; text-align: left; }
-
-    .skills-grid { grid-template-columns: 1fr; }
-
-    /* Timeline collapses to a single left-aligned spine */
-    .timeline::before { left: 9px; }
-
-    .timeline-item,
-    .timeline-item:nth-child(odd),
-    .timeline-item:nth-child(even) {
-        width: 100%;
-        left: 0;
-        padding: 12px 0 12px 40px;
-    }
-
-    .timeline-item:nth-child(odd) .timeline-node,
-    .timeline-item:nth-child(even) .timeline-node {
-        left: 1px;
-        right: auto;
-        top: 30px;
-    }
-
-    .timeline-item:nth-child(odd)::before,
-    .timeline-item:nth-child(even)::before {
-        left: 17px;
-        right: auto;
-        top: 37px;
-        width: 18px;
-    }
-
-    .subtitle { min-height: 3em; }
-
-    .hero-actions { margin-top: 18px; }
+    .subtitle { min-height: 3.2em; }
 
     /* Stacked full-width buttons: pin the transport legends to the right so
        they line up in a column, the way keys do on a deck's faceplate. */
-    .hero-action {
-        width: min(100%, 300px);
-        justify-content: space-between;
-    }
+    .hero-actions { flex-direction: column; align-items: stretch; width: min(100%, 320px); margin-left: auto; margin-right: auto; }
+
+    .hero-action { justify-content: space-between; }
 
     .hero-action .control-icon { margin-left: auto; }
 
-    /* Full-width buttons don't need the primary's extra gutters, and equal
-       padding is what lets the two legends line up. */
+    /* Equal padding is what lets the two legends line up. */
     .hero-action-primary { padding-left: 16px; padding-right: 16px; }
-
-    .social-link { width: 100%; max-width: 280px; }
 
     .back-to-top {
         right: 16px;
@@ -1180,11 +964,10 @@ body {
         transition-duration: 0.001ms !important;
         scroll-behavior: auto !important;
     }
-    .bg-grid { opacity: 0.3; }
 
     /* Without the running animation the glitch layers fall back to opacity:1
        and cover the title and the CTA fill — hide them and keep the clean
-       neon heading and a flat orange button. */
+       heading and a flat orange button. */
     .glitch-title::before,
     .glitch-title::after,
     .hero-action-primary::before,

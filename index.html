@@ -7,217 +7,168 @@
     <meta name="description" content="David Grimm — CTO & Product Strategist with 17+ years architecting AI, data intelligence and financial platforms.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Press+Start+2P&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Michroma&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="styles/style.css">
+    <noscript><style>.reveal { opacity: 1; transform: none; }</style></noscript>
 </head>
 <body>
-    <!-- Atmosphere layers -->
-    <div class="bg-grid" aria-hidden="true"></div>
-    <div class="bg-glow" aria-hidden="true"></div>
-    <div class="scanlines" aria-hidden="true"></div>
-    <div class="vignette" aria-hidden="true"></div>
-    <div class="floating-elements" aria-hidden="true">
-        <span class="floating-element" style="left: 8%;  animation-delay: 0s;"></span>
-        <span class="floating-element" style="left: 19%; animation-delay: 3s;"></span>
-        <span class="floating-element" style="left: 31%; animation-delay: 6s;"></span>
-        <span class="floating-element" style="left: 44%; animation-delay: 9s;"></span>
-        <span class="floating-element" style="left: 57%; animation-delay: 1.5s;"></span>
-        <span class="floating-element" style="left: 68%; animation-delay: 11s;"></span>
-        <span class="floating-element" style="left: 79%; animation-delay: 5s;"></span>
-        <span class="floating-element" style="left: 91%; animation-delay: 8s;"></span>
-    </div>
-
-    <div class="container">
-        <header class="hero reveal">
+    <header class="hero">
+        <div class="hero-scene" aria-hidden="true">
+            <div class="ground"></div>
+        </div>
+        <div class="hero-copy">
             <p class="kicker kicker-boot">// LOADING INTERFACE<span class="kicker-dots" aria-hidden="true"><span>.</span><span>.</span><span>.</span></span> <span class="kicker-done">DONE</span></p>
-            <h1 class="glitch-title" data-text="David Grimm">David Grimm</h1>
+            <h1 class="glitch-title" data-text="David&#10;Grimm">David<br>Grimm</h1>
             <p class="subtitle">CTO &amp; Product Strategist &bull; AI Implementation</p>
             <div class="hero-status">
                 <span class="status-dot"></span>
-                <span class="body-text">Available for select engagements</span>
+                <span>Available for select engagements</span>
             </div>
-            <nav class="hero-actions body-text" aria-label="Portfolio shortcuts">
+            <nav class="hero-actions" aria-label="Portfolio shortcuts">
                 <a class="hero-action hero-action-primary" href="#contact"><span>Start a conversation</span><span class="control-icon control-icon-play-pause" aria-hidden="true"><span class="play-mark"></span><span class="pause-mark"><span></span><span></span></span></span></a>
                 <a class="hero-action hero-action-secondary" href="#projects"><span>Explore selected work</span><span class="control-icon control-icon-forward" aria-hidden="true"><span></span><span></span></span></a>
             </nav>
-        </header>
+        </div>
+    </header>
 
+    <div class="container">
         <main>
             <section class="panel reveal" id="about">
-                <div class="panel-label">
-                    <span class="panel-num">01</span>
-                    <span class="panel-name">About</span>
-                </div>
-                <div class="profile-section">
-                    <div class="profile-image-wrap">
-                        <div class="profile-image"></div>
-                    </div>
-                    <div class="profile-text body-text">
-                        <h2 class="section-heading">About me</h2>
-                        <p>With over 17 years navigating the constantly evolving landscape of technology, I've architected digital solutions that bridge innovation with practical execution.</p>
-                        <p>My journey has spanned the full spectrum of tech challenges, from scaling content management for startups to building sophisticated data intelligence engines and financial management platforms that process millions in transactions.</p>
-                        <p>A decade ago, while the world was just discovering machine learning, I was already training neural network classifiers. This early foundation gives me a unique perspective on today's AI revolution, rooted in actual implementation and experience. I'm passionate about cutting through the buzzwords to deliver solutions that work.</p>
-                        <p>Having delivered over 300 successful projects, I bring a rare combination of technical depth and strategic vision. When you work with me, you get honest assessment, relentless dedication, and solutions built to last.</p>
-                    </div>
+                <img class="profile-photo" src="assets/david_grimm.jpg" alt="Portrait of David Grimm" width="800" height="800" loading="lazy">
+                <div class="prose">
+                    <h2 class="section-heading">About</h2>
+                    <p>With over 17 years navigating the constantly evolving landscape of technology, I've architected digital solutions that bridge innovation with practical execution.</p>
+                    <p>My journey has spanned the full spectrum of tech challenges, from scaling content management for startups to building sophisticated data intelligence engines and financial management platforms that process millions in transactions.</p>
+                    <p>A decade ago, while the world was just discovering machine learning, I was already training neural network classifiers. This early foundation gives me a unique perspective on today's AI revolution, rooted in actual implementation and experience. I'm passionate about cutting through the buzzwords to deliver solutions that work.</p>
+                    <p>Having delivered over 300 successful projects, I bring a rare combination of technical depth and strategic vision. When you work with me, you get honest assessment, relentless dedication, and solutions built to last.</p>
                 </div>
             </section>
 
             <section class="panel reveal" id="experience">
-                <div class="panel-label">
-                    <span class="panel-num">02</span>
-                    <span class="panel-name">Experience</span>
-                </div>
-                <h2 class="section-heading centered accent-orange">Capabilities</h2>
-                <div class="skills-grid">
-                    <article class="skill-card">
+                <h2 class="section-heading">Capabilities</h2>
+                <div class="capabilities">
+                    <div class="capability">
                         <h3>Machine Learning</h3>
-                        <p class="body-text">Tensorflow, Pytorch, Keras, Sagemaker</p>
-                    </article>
-                    <article class="skill-card">
+                        <ul>
+                            <li>TensorFlow</li>
+                            <li>PyTorch</li>
+                            <li>Keras</li>
+                            <li>SageMaker</li>
+                        </ul>
+                    </div>
+                    <div class="capability">
                         <h3>Backend</h3>
-                        <p class="body-text">Node.js, FastAPI, Spring, ColdFusion</p>
-                    </article>
-                    <article class="skill-card">
+                        <ul>
+                            <li>Node.js</li>
+                            <li>FastAPI</li>
+                            <li>Spring</li>
+                            <li>ColdFusion</li>
+                        </ul>
+                    </div>
+                    <div class="capability">
                         <h3>API Design</h3>
-                        <p class="body-text">OpenAPI, Postman, Bruno, Swagger</p>
-                    </article>
-                    <article class="skill-card">
+                        <ul>
+                            <li>OpenAPI</li>
+                            <li>Postman</li>
+                            <li>Bruno</li>
+                            <li>Swagger</li>
+                        </ul>
+                    </div>
+                    <div class="capability">
                         <h3>Ops</h3>
-                        <p class="body-text">Docker, AWS, Azure, GCP</p>
-                    </article>
-                </div>
-            </section>
-
-            <section class="panel reveal" id="projects">
-                <div class="panel-label cyan">
-                    <span class="panel-num">03</span>
-                    <span class="panel-name">Projects</span>
-                </div>
-                <h2 class="section-heading centered accent-cyan">Featured Projects</h2>
-                <div class="timeline">
-                    <div class="timeline-item reveal">
-                        <span class="timeline-node" aria-hidden="true"></span>
-                        <article class="project-card">
-                            <div class="project-header">
-                                <h3>Fraud Prevention</h3>
-                                <span class="project-year">2012</span>
-                            </div>
-                            <p class="body-text">Using e-fingerprinting for social media fraud prevention</p>
-                            <div class="project-tech">
-                                <span class="tech-tag">Fuzzy-IDs</span>
-                                <span class="tech-tag">Proxy Piercing</span>
-                                <span class="tech-tag">Behavioral Algorithms</span>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="timeline-item reveal">
-                        <span class="timeline-node" aria-hidden="true"></span>
-                        <article class="project-card">
-                            <div class="project-header">
-                                <h3>Risk Management</h3>
-                                <span class="project-year">2016</span>
-                            </div>
-                            <p class="body-text">Credit risk management system with real-time check in several e-Commerce platforms</p>
-                            <div class="project-tech">
-                                <span class="tech-tag">ColdFusion</span>
-                                <span class="tech-tag">SOAP</span>
-                                <span class="tech-tag">Flask</span>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="timeline-item reveal">
-                        <span class="timeline-node" aria-hidden="true"></span>
-                        <article class="project-card">
-                            <div class="project-header">
-                                <h3>Finance</h3>
-                                <span class="project-year">2017</span>
-                            </div>
-                            <p class="body-text">Building a PFM platform for B2C customers with real time multi-banking access</p>
-                            <div class="project-tech">
-                                <span class="tech-tag">Angular</span>
-                                <span class="tech-tag">Django</span>
-                                <span class="tech-tag">Docker</span>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="timeline-item reveal">
-                        <span class="timeline-node" aria-hidden="true"></span>
-                        <article class="project-card">
-                            <div class="project-header">
-                                <h3>Data Intelligence</h3>
-                                <span class="project-year">2019</span>
-                            </div>
-                            <p class="body-text">Building data intelligence services for leading open banking provider</p>
-                            <div class="project-tech">
-                                <span class="tech-tag">Spring</span>
-                                <span class="tech-tag">Sagemaker</span>
-                                <span class="tech-tag">Elastic</span>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="timeline-item reveal">
-                        <span class="timeline-node" aria-hidden="true"></span>
-                        <article class="project-card">
-                            <div class="project-header">
-                                <h3>Custom Solutions</h3>
-                                <span class="project-year">2021</span>
-                            </div>
-                            <p class="body-text">Building custom solutions for various companies in the CX area</p>
-                            <div class="project-tech">
-                                <span class="tech-tag">React</span>
-                                <span class="tech-tag">Postman</span>
-                                <span class="tech-tag">Jira</span>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="timeline-item reveal">
-                        <span class="timeline-node" aria-hidden="true"></span>
-                        <article class="project-card">
-                            <div class="project-header">
-                                <h3>Automation</h3>
-                                <span class="project-year">2023</span>
-                            </div>
-                            <p class="body-text">Building a visual workflow and AI orchestration platform</p>
-                            <div class="project-tech">
-                                <span class="tech-tag">Reactflow</span>
-                                <span class="tech-tag">AWS</span>
-                                <span class="tech-tag">LangGraph</span>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="timeline-item reveal">
-                        <span class="timeline-node" aria-hidden="true"></span>
-                        <article class="project-card">
-                            <div class="project-header">
-                                <h3>AI</h3>
-                                <span class="project-year">2026</span>
-                            </div>
-                            <p class="body-text">Implementing custom AI solutions</p>
-                            <div class="project-tech">
-                                <span class="tech-tag">Pydantic AI</span>
-                                <span class="tech-tag">Logfire</span>
-                                <span class="tech-tag">vLLM</span>
-                            </div>
-                        </article>
+                        <ul>
+                            <li>Docker</li>
+                            <li>AWS</li>
+                            <li>Azure</li>
+                            <li>GCP</li>
+                        </ul>
                     </div>
                 </div>
             </section>
 
-            <section class="contact-section reveal" id="contact">
-                <p class="kicker">// GET http://127.0.0.1/</p>
-                <h2 class="section-heading centered accent-orange">Connect</h2>
-                <p class="contact-intro body-text">Have a complex product, data, or AI challenge? Let&rsquo;s make the next move together.</p>
+            <section class="work" id="projects">
+                <h2 class="section-heading accent-cyan reveal">Selected work</h2>
+                <ol class="timeline">
+                    <li class="timeline-item reveal">
+                        <span class="timeline-node" aria-hidden="true"></span>
+                        <span class="timeline-year">2012</span>
+                        <article class="project-card">
+                            <h3>Fraud Prevention</h3>
+                            <p>Using e-fingerprinting for social media fraud prevention</p>
+                            <ul class="project-tech"><li>Fuzzy-IDs</li><li>Proxy Piercing</li><li>Behavioral Algorithms</li></ul>
+                        </article>
+                    </li>
+                    <li class="timeline-item reveal">
+                        <span class="timeline-node" aria-hidden="true"></span>
+                        <span class="timeline-year">2016</span>
+                        <article class="project-card">
+                            <h3>Risk Management</h3>
+                            <p>Credit risk management system with real-time check in several e-Commerce platforms</p>
+                            <ul class="project-tech"><li>ColdFusion</li><li>SOAP</li><li>Flask</li></ul>
+                        </article>
+                    </li>
+                    <li class="timeline-item reveal">
+                        <span class="timeline-node" aria-hidden="true"></span>
+                        <span class="timeline-year">2017</span>
+                        <article class="project-card">
+                            <h3>Finance</h3>
+                            <p>Building a PFM platform for B2C customers with real time multi-banking access</p>
+                            <ul class="project-tech"><li>Angular</li><li>Django</li><li>Docker</li></ul>
+                        </article>
+                    </li>
+                    <li class="timeline-item reveal">
+                        <span class="timeline-node" aria-hidden="true"></span>
+                        <span class="timeline-year">2019</span>
+                        <article class="project-card">
+                            <h3>Data Intelligence</h3>
+                            <p>Building data intelligence services for leading open banking provider</p>
+                            <ul class="project-tech"><li>Spring</li><li>SageMaker</li><li>Elastic</li></ul>
+                        </article>
+                    </li>
+                    <li class="timeline-item reveal">
+                        <span class="timeline-node" aria-hidden="true"></span>
+                        <span class="timeline-year">2021</span>
+                        <article class="project-card">
+                            <h3>Custom Solutions</h3>
+                            <p>Building custom solutions for various companies in the CX area</p>
+                            <ul class="project-tech"><li>React</li><li>Postman</li><li>Jira</li></ul>
+                        </article>
+                    </li>
+                    <li class="timeline-item reveal">
+                        <span class="timeline-node" aria-hidden="true"></span>
+                        <span class="timeline-year">2023</span>
+                        <article class="project-card">
+                            <h3>Automation</h3>
+                            <p>Building a visual workflow and AI orchestration platform</p>
+                            <ul class="project-tech"><li>React Flow</li><li>AWS</li><li>LangGraph</li></ul>
+                        </article>
+                    </li>
+                    <li class="timeline-item reveal is-current">
+                        <span class="timeline-node" aria-hidden="true"></span>
+                        <span class="timeline-year">2026</span>
+                        <article class="project-card">
+                            <h3>AI</h3>
+                            <p>Implementing custom AI solutions</p>
+                            <ul class="project-tech"><li>Pydantic AI</li><li>Logfire</li><li>vLLM</li></ul>
+                        </article>
+                    </li>
+                </ol>
+            </section>
+
+            <section class="panel reveal" id="contact">
+                <h2 class="section-heading">Start a conversation</h2>
+                <p class="contact-intro">Have a complex product, data, or AI challenge? Let&rsquo;s make the next move together.</p>
+                <a class="contact-email" href="mailto:david@vylos-ai.com">david@vylos-ai.com</a>
                 <div class="social-links">
-                    <a href="https://github.com/dagrimm" target="_blank" rel="noopener" class="social-link body-text">GitHub</a>
-                    <a href="https://de.linkedin.com/in/david-grimm-8577651bb" target="_blank" rel="noopener" class="social-link body-text">LinkedIn</a>
-                    <a href="mailto:david@dataflow-labs.de" class="social-link body-text">Email</a>
+                    <a href="https://github.com/dagrimm" target="_blank" rel="noopener" class="social-link">GitHub</a>
+                    <a href="https://de.linkedin.com/in/david-grimm-8577651bb" target="_blank" rel="noopener" class="social-link">LinkedIn</a>
                 </div>
             </section>
         </main>
 
         <footer class="footer">
-            <p class="body-text">&copy; <script>document.write(new Date().getFullYear())</script> David Grimm &bull; All rights reserved</p>
+            <p>&copy; <script>document.write(new Date().getFullYear())</script> David Grimm &bull; All rights reserved</p>
         </footer>
     </div>
 
@@ -271,6 +222,23 @@
             } else {
                 /* No typing pass to wait on — show the finished state at once. */
                 finishBoot();
+            }
+
+            /* ---- Timeline spine lights up to the middle of the screen ---- */
+            var timeline = document.querySelector('.timeline');
+            if (timeline && !reduce) {
+                var ticking = false;
+                function updateSpine() {
+                    var box = timeline.getBoundingClientRect();
+                    var lit = (window.innerHeight * 0.6 - box.top) / box.height;
+                    timeline.style.setProperty('--spine', Math.min(1, Math.max(0, lit)));
+                    ticking = false;
+                }
+                window.addEventListener('scroll', function () {
+                    if (!ticking) { ticking = true; requestAnimationFrame(updateSpine); }
+                }, { passive: true });
+                window.addEventListener('resize', updateSpine);
+                updateSpine();
             }
 
             /* ---- Back to top control ---- */
