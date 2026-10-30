@@ -1,2 +1,5 @@
 # local project settings
 .claude/
+
+# Playwright MCP session output
+.playwright-mcp/

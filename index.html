@@ -5,186 +5,544 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>David Grimm — CTO &amp; Product Strategist</title>
     <meta name="description" content="David Grimm — CTO &amp; Product Strategist with 17+ years architecting AI, data intelligence and financial platforms.">
+    <script>document.documentElement.classList.add('js');</script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300..600&family=Martian+Mono:wdth,wght@75..112.5,100..600&display=swap" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/style.css?v=7">
 </head>
 <body>
     <header class="hero">
-        <p class="byline">David Grimm <span>CTO &amp; product strategist</span></p>
-        <h1>Good guidance outlasts the trend.</h1>
+        <canvas class="waves" aria-hidden="true"></canvas>
+        <div class="hero-inner">
+            <p class="line"><span class="ps1">david@vylos ~ $</span> <span class="cmd" data-type>whoami</span></p>
+            <p class="out">David Grimm, CTO &amp; product strategist<br>Available for select engagements</p>
+            <p class="line"><span class="ps1">david@vylos ~ $</span> <span class="cmd" data-type>cat principle.txt</span></p>
+            <h1 class="out">Good guidance <span class="nowrap">outlasts the trend.<span class="cursor" aria-hidden="true"></span></span></h1>
+        </div>
     </header>
 
-    <main class="flow">
-        <svg class="wire" aria-hidden="true"><path class="wire-track"></path><path class="wire-live"></path></svg>
-        <div class="wire-fill" aria-hidden="true"></div>
-
-        <section class="stop at-a intro" id="about">
-            <span class="port"></span>
-            <h2>17 years, 300+ projects</h2>
-            <div class="intro-body">
-                <img src="assets/david_grimm.jpg" alt="Portrait of David Grimm" width="96" height="96">
-                <p>I was training neural network classifiers a decade ago, long before they became a boardroom topic. 17 years of experience show me what holds up in production. Whatever the current trend is, you get honest guidance and battle-tested solutions.</p>
+    <main class="page">
+        <section id="about" class="pane" aria-labelledby="about-title">
+            <header class="pane-head">
+                <h2 id="about-title" aria-label="About"><span class="ps1">~/about $</span> cat about.md</h2>
+                <span class="pane-meta">exit 0</span>
+            </header>
+            <div class="pane-body">
+            <div class="about">
+                <div>
+                    <p class="lead">17 years, 300+ projects.</p>
+                    <p>I was training neural network classifiers a decade ago, long before they became a boardroom topic. 17 years of experience show me what holds up in production. Whatever the current trend is, you get honest guidance and battle-tested solutions.</p>
+                </div>
+                <figure>
+                    <img src="assets/david_grimm.jpg" alt="Portrait of David Grimm" width="800" height="800" loading="lazy">
+                    <figcaption>david.jpg</figcaption>
+                </figure>
             </div>
-            <h3 class="results-title">What the work produced</h3>
-            <ul class="results">
-                <li>Seven figures in outstanding payments reclaimed</li>
-                <li>Banking APIs migrated that were critical to the German economy</li>
-                <li>Ticket reply times cut from weeks to minutes</li>
-                <li>60% of document workflows automated for an infrastructure provider</li>
-                <li>Up to 60% less manual work across several companies</li>
-                <li>Predictive algorithms proven on financial transactions, with machine learning for transaction classification</li>
-            </ul>
-            <p class="stack">Machine learning: TensorFlow, PyTorch, SageMaker<br>Backend: Node.js, FastAPI, Spring<br>Ops: Docker, AWS, Azure, GCP</p>
+            </div>
         </section>
-
-        <section aria-labelledby="work-title">
-            <h2 class="visually-hidden" id="work-title">Selected work</h2>
-            <ol class="stops">
-            <li class="stop at-b">
-                <span class="port"></span>
-                <p class="stop-meta"><span>2012</span> payment &rarr; fraud check</p>
-                <h3>Fraud prevention and payments</h3>
-                <p>E-fingerprinting and payment systems for a social media platform in Germany.</p>
-                <p class="stop-result">Seven figures in outstanding payments reclaimed</p>
-            </li>
-            <li class="stop at-a">
-                <span class="port"></span>
-                <p class="stop-meta"><span>2016</span> e-commerce order &rarr; credit check</p>
-                <h3>Real-time credit risk</h3>
-                <p>Connected many different credit data APIs behind one simple interface for developers, built into shop systems so merchants could reduce fraud and chargebacks.</p>
-            </li>
-            <li class="stop at-c">
-                <span class="port"></span>
-                <p class="stop-meta"><span>2017</span> bank accounts &rarr; one view</p>
-                <h3>Personal finance platform</h3>
-                <p>A PFM platform for B2C customers with real-time multi-banking access.</p>
-            </li>
-            <li class="stop at-a is-case">
-                <span class="port"></span>
-                <p class="stop-meta"><span>2019</span> banking data &rarr; intelligence services</p>
-                <h3>Open banking data intelligence</h3>
-                <dl class="case">
-                    <div><dt>Problem</dt><dd>A leading open banking provider, whose platform is used by banks and accounting firms, needed data intelligence services.</dd></div>
-                    <div><dt>Hard decision</dt><dd>Moving from a monorepo to dedicated services with APIs, in the finance industry. It was rough at the start, but the modularity paid off in the long run.</dd></div>
-                    <div><dt>Result</dt><dd>Migrated banking APIs critical to the German economy. Proved that predictive algorithms work on financial transactions, and used machine learning to classify them.</dd></div>
-                </dl>
-            </li>
-            <li class="stop at-b">
-                <span class="port"></span>
-                <p class="stop-meta"><span>2021</span> customer problem &rarr; custom build</p>
-                <h3>Custom CX solutions</h3>
-                <p>Custom solutions for various companies in the CX area.</p>
-                <p class="stop-result">60% of document workflows automated for an infrastructure provider</p>
-            </li>
-            <li class="stop at-a is-case">
-                <span class="port"></span>
-                <p class="stop-meta"><span>2023</span> visual workflow &rarr; AI orchestration</p>
-                <h3>AI workflow orchestration</h3>
-                <dl class="case">
-                    <div><dt>Problem</dt><dd>Companies of all sizes needed a way to automate their business processes, so we built a visual workflow and AI orchestration platform.</dd></div>
-                    <div><dt>Hard decision</dt><dd>Planning the complete infrastructure and deciding how the workflow graphs should work, then setting the roadmap from proof of concept to go-to-market.</dd></div>
-                    <div><dt>Result</dt><dd>Enterprise clients onboarded successfully, with automated business processes delivering high ROI. Ticket reply times cut from weeks to minutes.</dd></div>
-                </dl>
-            </li>
-            <li class="stop at-c">
-                <span class="port"></span>
-                <p class="stop-meta"><span>2026</span> your process &rarr; working AI</p>
-                <h3>AI integration</h3>
-                <ul class="stop-points">
-                    <li>Voice AI solutions</li>
-                    <li>Custom AI agents</li>
-                    <li>Custom workflow automation</li>
-                    <li>A new platform that uses AI agents to map business processes</li>
+        <section id="stack" class="pane" aria-labelledby="stack-title">
+            <header class="pane-head">
+                <h2 id="stack-title" aria-label="Capabilities"><span class="ps1">~/about $</span> tree stack/</h2>
+                <span class="pane-meta">4 dirs, 16 tools</span>
+            </header>
+            <div class="pane-body">
+            <div class="tools"><h3>machine-learning/</h3><ul><li>TensorFlow</li><li>PyTorch</li><li>Keras</li><li>SageMaker</li></ul></div>
+                <div class="tools"><h3>backend/</h3><ul><li>Node.js</li><li>FastAPI</li><li>Spring</li><li>ColdFusion</li></ul></div>
+                <div class="tools"><h3>api-design/</h3><ul><li>OpenAPI</li><li>Postman</li><li>Bruno</li><li>Swagger</li></ul></div>
+                <div class="tools"><h3>ops/</h3><ul><li>Docker</li><li>AWS</li><li>Azure</li><li>GCP</li></ul></div>
+            </div>
+        </section>
+        <section id="results" class="pane wide" aria-labelledby="results-title">
+            <header class="pane-head">
+                <h2 id="results-title" aria-label="Results"><span class="ps1">~/about $</span> ./results --all</h2>
+                <span class="pane-meta">6 rows</span>
+            </header>
+            <div class="pane-body">
+            <ul class="metrics">
+                    <li class="metric card"><strong>7 figures</strong><p>Outstanding payments reclaimed</p><a href="#y2012">2012</a></li>
+                    <li class="metric card"><strong>Critical</strong><p>Banking APIs migrated, critical to the German economy</p><a href="#y2019">2019</a></li>
+                    <li class="metric card"><strong>Proven</strong><p>Predictive algorithms and machine learning on financial transactions</p><a href="#y2019">2019</a></li>
+                    <li class="metric card"><strong>60%</strong><p>Document workflows automated for an infrastructure provider</p><a href="#y2021">2021</a></li>
+                    <li class="metric card"><strong>Weeks &rarr; minutes</strong><p>Ticket reply times</p><a href="#y2023">2023</a></li>
+                    <li class="metric card"><strong>Up to 60%</strong><p>Less manual work across several companies</p><span>ongoing</span></li>
                 </ul>
-            </li>
-            </ol>
+            </div>
         </section>
+        <section id="work" class="pane wide" aria-labelledby="work-title">
+            <header class="pane-head">
+                <h2 id="work-title" aria-label="Selected work"><span class="ps1">~/work $</span> git log --graph --reverse</h2>
+                <span class="pane-meta">7 commits, 2 branches</span>
+            </header>
+            <div class="pane-body">
+            <ol class="graph">
+                <span class="rail-fill" style="position: absolute; top: 0;" aria-hidden="true"></span>
 
-        <section class="stop at-a end" id="contact">
-            <span class="port"></span>
-            <p class="stop-meta">your problem &rarr; ?</p>
-            <h2>This one is yours.</h2>
-            <a class="email" href="mailto:david@vylos-ai.com">david@vylos-ai.com</a>
-            <p class="links"><a href="https://github.com/dagrimm" target="_blank" rel="noopener">GitHub</a> <a href="https://de.linkedin.com/in/david-grimm-8577651bb" target="_blank" rel="noopener">LinkedIn</a></p>
+                <li class="commit" id="y2012">
+                    <span class="port"></span>
+                    <div class="card">
+                        <div class="card-title">
+                    <p class="ref"><b>2012</b> payment &rarr; fraud check</p>
+                    <h3>Fraud prevention and payments</h3>
+                        </div>
+                        <div class="card-detail">
+                    <p>E-fingerprinting and payment systems for a social media platform in Germany.</p>
+                            <p class="result">Seven figures in outstanding payments reclaimed</p>
+                        </div>
+                    </div>
+
+                </li>
+
+                <li class="commit" id="y2016">
+                    <span class="port"></span>
+                    <div class="card">
+                        <div class="card-title">
+                    <p class="ref"><b>2016</b> e-commerce order &rarr; credit check</p>
+                    <h3>Real-time credit risk</h3>
+                        </div>
+                        <div class="card-detail">
+
+                            <p>Connected many different credit data APIs behind one simple interface for developers, built into shop systems so merchants could reduce fraud and chargebacks.</p>                        </div>
+                    </div>
+
+                </li>
+
+                <li class="commit" id="y2017">
+                    <span class="port"></span>
+                    <div class="card">
+                        <div class="card-title">
+                    <p class="ref"><b>2017</b> bank accounts &rarr; one view</p>
+                    <h3>Personal finance platform</h3>
+                        </div>
+                        <div class="card-detail">
+
+                            <p>A PFM platform for B2C customers with real-time multi-banking access.</p>                        </div>
+                    </div>
+
+                </li>
+
+                <li class="commit has-branch" id="y2019">
+                    <span class="port"></span>
+                    <div class="card">
+                    <p class="ref"><b>2019</b> banking data &rarr; intelligence services</p>
+                    <h3>Open banking data intelligence</h3>
+                    </div>
+                    <ol class="branch">
+                        <span class="rail-fill" style="position: absolute; top: 0;" aria-hidden="true"></span>
+                        <li><span class="port"></span><div class="card"><b>problem</b><p>A leading open banking provider, whose platform is used by banks and accounting firms, needed data intelligence services.</p></div></li>
+                        <li><span class="port"></span><div class="card"><b>decision</b><p>Moving from a monorepo to dedicated services with APIs, in the finance industry. It was rough at the start, but the modularity paid off in the long run.</p></div></li>
+                        <li class="is-result"><span class="port"></span><div class="card"><b>result</b><p>Migrated banking APIs critical to the German economy. Proved that predictive algorithms work on financial transactions, and used machine learning to classify them.</p></div></li>
+                    </ol>
+                </li>
+
+                <li class="commit" id="y2021">
+                    <span class="port"></span>
+                    <div class="card">
+                        <div class="card-title">
+                    <p class="ref"><b>2021</b> customer problem &rarr; custom build</p>
+                    <h3>Custom CX solutions</h3>
+                        </div>
+                        <div class="card-detail">
+                    <p>Custom solutions for various companies in the CX area.</p>
+                            <p class="result">60% of document workflows automated for an infrastructure provider</p>
+                        </div>
+                    </div>
+
+                </li>
+
+                <li class="commit has-branch" id="y2023">
+                    <span class="port"></span>
+                    <div class="card">
+                    <p class="ref"><b>2023</b> visual workflow &rarr; AI orchestration</p>
+                    <h3>AI workflow orchestration</h3>
+                    </div>
+                    <ol class="branch">
+                        <span class="rail-fill" style="position: absolute; top: 0;" aria-hidden="true"></span>
+                        <li><span class="port"></span><div class="card"><b>problem</b><p>Companies of all sizes needed a way to automate their business processes, so we built a visual workflow and AI orchestration platform.</p></div></li>
+                        <li><span class="port"></span><div class="card"><b>decision</b><p>Planning the complete infrastructure and deciding how the workflow graphs should work, then setting the roadmap from proof of concept to go-to-market.</p></div></li>
+                        <li class="is-result"><span class="port"></span><div class="card"><b>result</b><p>Enterprise clients onboarded successfully, with automated business processes delivering high ROI. Ticket reply times cut from weeks to minutes.</p></div></li>
+                    </ol>
+                </li>
+
+                <li class="commit" id="y2026">
+                    <span class="port"></span>
+                    <div class="card">
+                        <div class="card-title">
+                    <p class="ref"><b>2026</b> your process &rarr; working AI</p>
+                    <h3>AI integration</h3>
+                        </div>
+                        <div class="card-detail">
+                    <ul class="points">
+                        <li>Voice AI solutions</li>
+                        <li>Custom AI agents</li>
+                        <li>Custom workflow automation</li>
+                        <li>A new platform that uses AI agents to map business processes</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </li>
+
+                <li class="commit head" id="contact">
+                    <span class="port"></span>
+                    <div class="card">
+                        <div class="card-title">
+                    <p class="ref"><b>HEAD</b> &rarr; your-problem</p>
+                    <h3>This one is yours.</h3>
+                        </div>
+                        <div class="card-detail">
+                    <a class="email" href="mailto:david@vylos-ai.com">david@vylos-ai.com</a>
+                            <p class="links"><a href="https://github.com/dagrimm" target="_blank" rel="noopener">GitHub</a> <a href="https://de.linkedin.com/in/david-grimm-8577651bb" target="_blank" rel="noopener">LinkedIn</a></p>
+                        </div>
+                    </div>
+
+                </li>
+            </ol>
+            </div>
         </section>
     </main>
 
+    <form class="shell" autocomplete="off">
+        <span class="mode">david@vylos</span>
+        <nav class="tabs" aria-label="Sections">
+            <a href="#about">about</a>
+            <a href="#stack">stack</a>
+            <a href="#results">results</a>
+            <a href="#work">work</a>
+            <a href="#contact">contact</a>
+        </nav>
+        <label class="prompt">
+            <span aria-hidden="true">:</span>
+            <span class="visually-hidden">Command line. Type help for a list of commands.</span>
+            <input type="text" placeholder="type help" spellcheck="false" autocapitalize="off" autocorrect="off">
+        </label>
+        <span class="pos" aria-hidden="true">Top</span>
+        <pre class="shell-out" role="status" hidden></pre>
+    </form>
+
     <script>
         (function () {
-            var flow = document.querySelector('.flow');
-            var svg = flow.querySelector('.wire');
-            var track = flow.querySelector('.wire-track');
-            var live = flow.querySelector('.wire-live');
-            var fill = flow.querySelector('.wire-fill');
-            var ports = Array.prototype.slice.call(flow.querySelectorAll('.port'));
+            var root = document.documentElement;
             var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            var length = 0, points = [], ticking = false;
-            var flowTop = 0, viewHeight = 0, viewWidth = 0, litPorts = 0, straight = false;
+            var phone = window.matchMedia('(max-width: 860px)');
 
-            /* Right-angled run from port to port, with the jog just above the next one. */
-            function route() {
-                var box = flow.getBoundingClientRect();
-                flowTop = box.top + window.scrollY;
-                viewHeight = window.innerHeight;
-                viewWidth = window.innerWidth;
-                svg.setAttribute('width', box.width);
-                svg.setAttribute('height', box.height);
-                points = ports.map(function (port) {
-                    var r = port.getBoundingClientRect();
-                    return { x: r.left + r.width / 2 - box.left, y: r.top + r.height / 2 - box.top };
+            /* ---- Boot: type each command, then print its output ---- */
+            var typed = document.querySelectorAll('[data-type]');
+            var outputs = document.querySelectorAll('.hero .out');
+            if (!reduce) {
+                outputs.forEach(function (el) { el.style.visibility = 'hidden'; });
+                var texts = Array.prototype.map.call(typed, function (el) {
+                    var text = el.textContent;
+                    el.textContent = '';
+                    return text;
                 });
-                var d = 'M' + points[0].x + ' 0 L' + points[0].x + ' ' + points[0].y;
-                for (var i = 1; i < points.length; i++) {
-                    var a = points[i - 1], b = points[i], jog = b.y - 44, r = 12;
-                    if (a.x === b.x) { d += ' L' + b.x + ' ' + b.y; continue; }
-                    var dir = b.x > a.x ? 1 : -1;
-                    d += ' L' + a.x + ' ' + (jog - r) +
-                         ' Q' + a.x + ' ' + jog + ' ' + (a.x + dir * r) + ' ' + jog +
-                         ' L' + (b.x - dir * r) + ' ' + jog +
-                         ' Q' + b.x + ' ' + jog + ' ' + b.x + ' ' + (jog + r) +
-                         ' L' + b.x + ' ' + b.y;
-                }
-                track.setAttribute('d', d);
-                live.setAttribute('d', d);
-                length = live.getTotalLength();
-                live.style.strokeDasharray = length;
-                straight = points.every(function (p) { return p.x === points[0].x; });
-                fill.style.left = (points[0].x - 1.5) + 'px';
-                fill.style.height = points[points.length - 1].y + 'px';
-                draw();
+                (function type(n, i) {
+                    if (n >= typed.length) { return; }
+                    typed[n].textContent = texts[n].slice(0, i);
+                    if (i < texts[n].length) { setTimeout(type, 34, n, i + 1); return; }
+                    setTimeout(function () {
+                        outputs[n].style.visibility = '';
+                        setTimeout(type, 240, n + 1, 0);
+                    }, 180);
+                })(0, 0);
             }
 
-            function draw() {
-                ticking = false;
-                var front = reduce ? Infinity : viewHeight * 0.68 + window.scrollY - flowTop;
-                var last = points[points.length - 1];
-                var share = Math.max(0, Math.min(1, front / last.y));
-                if (straight) {
-                    fill.style.transform = 'scaleY(' + share + ')';
-                } else {
-                    live.style.strokeDashoffset = length * (1 - share);
+            /* ---- The graph: a scaled bar per rail, so scrolling never repaints a tall layer.
+               The front glides toward the scroll position rather than stepping with it. ---- */
+            var fills = [], ports = [], branches = [], pageEnd = 0, view = 0, end = 0;
+            var target = 0, front = 0, gliding = false, measured = false;
+            var bar = document.querySelector('.pos');
+            var mainFill = document.querySelector('.graph > .rail-fill');
+
+            /* Layout position, unaffected by the transforms of elements easing in. */
+            function pageTop(el) {
+                var y = 0;
+                for (; el; el = el.offsetParent) {
+                    y += el.offsetTop + (el.offsetParent ? el.offsetParent.clientTop : 0);
                 }
-                /* Only touch the ports that changed state. */
-                while (litPorts < ports.length && points[litPorts].y <= front) {
-                    ports[litPorts++].classList.add('is-lit');
-                }
-                while (litPorts > 0 && points[litPorts - 1].y > front) {
-                    ports[--litPorts].classList.remove('is-lit');
-                }
+                return y;
+            }
+            function middle(el) { return pageTop(el) + el.offsetHeight / 2; }
+
+            function measure() {
+                view = window.innerHeight;
+                ports = Array.prototype.map.call(document.querySelectorAll('.port'), function (el) {
+                    return { el: el, y: middle(el), lit: false };
+                });
+                var graph = document.querySelector('.graph');
+                var dots = graph.querySelectorAll(':scope > .commit > .port');
+                var start = pageTop(graph);
+                end = middle(dots[dots.length - 1]);
+                graph.style.setProperty('--rail-height', (end - start) + 'px');
+                mainFill.style.height = (end - start) + 'px';
+                fills = [{ el: mainFill, from: start, to: end, last: -1 }];
+                branches = Array.prototype.map.call(document.querySelectorAll('.branch'), function (branch) {
+                    var from = pageTop(branch), to = from + branch.offsetHeight;
+                    var fill = branch.querySelector('.rail-fill');
+                    fill.style.height = branch.offsetHeight + 'px';
+                    fills.push({ el: fill, from: from, to: to, last: -1 });
+                    return { el: branch, from: from, to: to };
+                });
+                pageEnd = root.scrollHeight - view - 2;
+                aim();
+                if (!measured) { front = target; measured = true; }
+                paint();
             }
 
-            window.addEventListener('scroll', function () {
-                if (!ticking) { ticking = true; requestAnimationFrame(draw); }
-            }, { passive: true });
-            /* Phones fire resize as the address bar slides; only a width change moves the ports. */
-            window.addEventListener('resize', function () {
-                if (window.innerWidth !== viewWidth) { route(); }
+            function paint() {
+                fills.forEach(function (f) {
+                    var share = Math.max(0, Math.min(1, (front - f.from) / (f.to - f.from)));
+                    if (share !== f.last) { f.el.style.transform = 'scaleY(' + share + ')'; f.last = share; }
+                });
+                ports.forEach(function (p) {
+                    var lit = p.y <= front;
+                    if (lit !== p.lit) { p.el.classList.toggle('is-lit', lit); p.lit = lit; }
+                });
+                branches.forEach(function (b) {
+                    b.el.classList.toggle('is-forked', b.from - 16 <= front);
+                    b.el.classList.toggle('is-merged', b.to <= front);
+                });
+            }
+
+            function glide() {
+                front += (target - front) * 0.16;
+                if (Math.abs(target - front) < 0.5) { front = target; gliding = false; }
+                paint();
+                if (gliding) { requestAnimationFrame(glide); }
+            }
+
+            function aim() {
+                var y = window.scrollY;
+                target = reduce || y >= pageEnd ? end + 1 : y + view * 0.68;
+                if (!phone.matches) {
+                    bar.textContent = y < 4 ? 'Top' : (y >= pageEnd ? 'Bot' : Math.round(y / Math.max(1, pageEnd + 2) * 100) + '%');
+                }
+                if (reduce) { front = target; paint(); return; }
+                if (measured && !gliding) { gliding = true; requestAnimationFrame(glide); }
+            }
+
+            window.addEventListener('scroll', aim, { passive: true });
+            new ResizeObserver(measure).observe(document.body);
+
+            /* ---- Desktop gets inertia on the wheel. Phones keep native momentum, which
+               nothing improves on. If the CDN fails, scrolling simply stays native. ---- */
+            var lenis = null;
+            if (!reduce && !phone.matches && window.matchMedia('(pointer: fine)').matches) {
+                var script = document.createElement('script');
+                script.src = 'https://cdn.jsdelivr.net/npm/lenis@1.3.27/dist/lenis.min.js';
+                script.integrity = 'sha384-R18XzqnxvVLEF+BYfhpmDx30v7eP83fAckyfoRzK7/Uf6nGqufcmsk0eAKo7S3RU';
+                script.crossOrigin = 'anonymous';
+                script.onload = function () {
+                    lenis = new window.Lenis({ autoRaf: true, anchors: { offset: -16 }, lerp: 0.09 });
+                };
+                document.head.appendChild(script);
+            }
+
+            /* ---- The waves: one flat signal line that fans out into glass waveforms, with
+               pulses running along them. Plain WebGL: the shape is computed on the GPU,
+               so the thread that handles scrolling stays free. ---- */
+            var canvas = document.querySelector('.waves');
+            var gl = canvas.getContext('webgl', { alpha: true, antialias: true, powerPreference: 'low-power' });
+            var STRANDS = 5, STEPS = 260, u = {};
+            var onScreen = true, frame = 0, lastFrame = 0, quietAt = 0, clock = 0, ready = false;
+
+            function shader(type, source) {
+                var s = gl.createShader(type);
+                gl.shaderSource(s, source);
+                gl.compileShader(s);
+                return s;
+            }
+
+            function build() {
+                var program = gl.createProgram();
+                gl.attachShader(program, shader(gl.VERTEX_SHADER, [
+                    'attribute vec3 place;',  /* along the wave, side of the rod, strand */
+                    'uniform vec2 size; uniform float time; uniform float rod; uniform float level; uniform float start; uniform float climb;',
+                    'varying float vAcross; varying float vAlong; varying float vDepth; varying float vStrand;',
+                    'float rise(float s) { return smoothstep(start, 0.98, s); }',
+                    'float wave(float s, float i) {',
+                    '  float e = rise(s);',
+                    '  float a = sin(s * 9.0 + time * 0.9 + i * 1.25);',
+                    '  float b = sin(s * 15.0 - time * 0.6 + i * 2.1);',
+                    '  float c = sin(s * 4.0 + time * 0.35 - i * 0.8);',
+                    '  return e * (a * 0.13 + b * 0.05 + c * 0.13 + (i - 2.0) * 0.045 - climb);',
+                    '}',
+                    'void main() {',
+                    '  float s = place.x, i = place.z;',
+                    '  vec2 here = vec2(s * size.x, (level + wave(s, i)) * size.y);',
+                    '  vec2 next = vec2((s + 0.002) * size.x, (level + wave(s + 0.002, i)) * size.y);',
+                    '  vec2 dir = normalize(next - here);',
+                    /* Each strand keeps its own layer and swells as it turns toward the viewer. */
+                    '  float depth = sin(s * 7.0 + time * 0.5 + i * 1.9) * rise(s);',
+                    '  float width = rod * (0.5 + 0.5 * rise(s)) * (0.74 + 0.26 * depth);',
+                    '  vec2 p = here + vec2(-dir.y, dir.x) * place.y * width;',
+                    '  vAcross = place.y; vAlong = s; vDepth = depth; vStrand = i;',
+                    '  gl_Position = vec4(p.x / size.x * 2.0 - 1.0, 1.0 - p.y / size.y * 2.0, -0.1 - i * 0.15, 1.0);',
+                    '}'
+                ].join('\n')));
+                gl.attachShader(program, shader(gl.FRAGMENT_SHADER, [
+                    'precision highp float;',
+                    'uniform float time;',
+                    'varying float vAcross; varying float vAlong; varying float vDepth; varying float vStrand;',
+                    'const vec3 orange = vec3(0.992, 0.537, 0.145);',
+                    'const vec3 teal = vec3(0.0, 1.0, 0.8);',
+                    'void main() {',
+                    '  float a = abs(vAcross);',
+                    '  if (a > 1.0) { discard; }',
+                    /* Dark glass, lit only at the rim. */
+                    '  float rim = pow(1.0 - sqrt(1.0 - a * a), 1.9);',
+                    '  float front = smoothstep(-0.7, 0.7, vDepth);',
+                    '  vec3 edge = mix(teal * 0.85, orange, front);',
+                    '  vec3 color = vec3(0.026, 0.038, 0.044) + edge * rim * (0.62 + 0.38 * front);',
+                    '  color += vec3(1.0, 0.9, 0.8) * exp(-pow((vAcross + 0.42) * 6.0, 2.0)) * 0.08;',
+                    /* A pulse travels each strand left to right with a fading tail. */
+                    '  float at = fract(time * 0.11 + vStrand * 0.37) * 1.5 - vAlong;',
+                    '  float pulse = exp(-at * at * 900.0) + exp(-at * 9.0) * smoothstep(0.0, 0.02, at) * smoothstep(0.7, 0.3, at) * 0.6;',
+                    '  color += mix(teal, orange * 1.3, front) * pulse * (0.3 + rim * 1.5);',
+                    '  gl_FragColor = vec4(color, 1.0);',
+                    '}'
+                ].join('\n')));
+                gl.linkProgram(program);
+                gl.useProgram(program);
+                var data = [], i, j;
+                for (i = 0; i < STRANDS; i++) {
+                    for (j = 0; j < STEPS; j++) {
+                        var a = j / STEPS, b = (j + 1) / STEPS;
+                        data.push(a, -1, i, b, -1, i, a, 1, i, a, 1, i, b, -1, i, b, 1, i);
+                    }
+                }
+                gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+                gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(data), gl.STATIC_DRAW);
+                var at = gl.getAttribLocation(program, 'place');
+                gl.enableVertexAttribArray(at);
+                gl.vertexAttribPointer(at, 3, gl.FLOAT, false, 0, 0);
+                ['size', 'time', 'rod', 'level', 'start', 'climb'].forEach(function (name) { u[name] = gl.getUniformLocation(program, name); });
+                gl.enable(gl.DEPTH_TEST);
+                gl.clearColor(0, 0, 0, 0);
+                ready = true;
+            }
+
+            function size() {
+                if (!ready) { return; }
+                var pixel = Math.min(window.devicePixelRatio || 1, phone.matches ? 1.5 : 2);
+                var w = canvas.clientWidth, h = canvas.clientHeight;
+                if (!w || !h) { return; }
+                canvas.width = Math.round(w * pixel);
+                canvas.height = Math.round(h * pixel);
+                gl.viewport(0, 0, canvas.width, canvas.height);
+                gl.uniform2f(u.size, w, h);
+                gl.uniform1f(u.rod, phone.matches ? Math.max(6, w * 0.018) : Math.max(9, w * 0.0125));
+                gl.uniform1f(u.level, phone.matches ? 0.5 : 0.77);
+                /* On desktop the line stays flat under the headline, then climbs to its right. */
+                gl.uniform1f(u.start, phone.matches ? 0.1 : 0.42);
+                gl.uniform1f(u.climb, phone.matches ? 0 : 0.2);
+                render();
+            }
+
+            function render() {
+                gl.uniform1f(u.time, clock * 0.00042);
+                gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+                gl.drawArrays(gl.TRIANGLES, 0, STRANDS * STEPS * 6);
+            }
+
+            function tick(now) {
+                frame = 0;
+                if (!onScreen) { return; }
+                frame = requestAnimationFrame(tick);
+                /* Phones run at half rate and yield completely while the page is moving. */
+                if ((phone.matches && now - lastFrame < 32) || (phone.matches && now < quietAt)) { return; }
+                clock += Math.min(now - lastFrame, 100);
+                lastFrame = now;
+                render();
+            }
+
+            function start() {
+                if (ready && !frame && onScreen && !reduce) { frame = requestAnimationFrame(tick); }
+            }
+
+            if (gl) { build(); }
+            ['scroll', 'touchstart', 'touchmove'].forEach(function (type) {
+                window.addEventListener(type, function () { quietAt = performance.now() + 260; }, { passive: true });
             });
-            if (document.fonts && document.fonts.ready) { document.fonts.ready.then(route); }
-            route();
+            new IntersectionObserver(function (entries) {
+                onScreen = entries[0].isIntersecting;
+                start();
+            }).observe(document.querySelector('.hero'));
+            new ResizeObserver(size).observe(canvas);
+            start();
+
+            /* ---- The bar's tab follows the section in view, and stays lit across the gaps ---- */
+            var tabs = {}, current = null;
+            document.querySelectorAll('.tabs a').forEach(function (a) { tabs[a.getAttribute('href').slice(1)] = a; });
+            var active = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    var tab = tabs[entry.target.id];
+                    if (entry.isIntersecting && tab && tab !== current) {
+                        if (current) { current.classList.remove('is-active'); }
+                        tab.classList.add('is-active');
+                        current = tab;
+                    }
+                });
+            }, { rootMargin: '-45% 0px -54% 0px' });
+            document.querySelectorAll('.pane').forEach(function (pane) { active.observe(pane); });
+
+            /* ---- The command line ---- */
+            var form = document.querySelector('.shell');
+            var input = form.querySelector('input');
+            var out = form.querySelector('.shell-out');
+            var email = 'david@vylos-ai.com';
+
+            function say(text) { out.textContent = text; out.hidden = !text; }
+            function go(id) {
+                var el = document.getElementById(id);
+                if (el && lenis) { lenis.scrollTo(el, { offset: -16 }); }
+                else if (el) { el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }); }
+                say('');
+            }
+
+            var commands = {
+                help: function () {
+                    say('about     who this is\nresults   what the work produced\nstack     tools and platforms\nwork      the career graph\ncontact   start a conversation\nmail      write an email\ngithub    open GitHub\nlinkedin  open LinkedIn\nclear     close this\n\nTab completes. Press : or / from anywhere.');
+                },
+                about: function () { go('about'); },
+                results: function () { go('results'); },
+                stack: function () { go('stack'); },
+                work: function () { go('work'); },
+                contact: function () { go('contact'); },
+                mail: function () { location.href = 'mailto:' + email; say('opening mail to ' + email); },
+                github: function () { window.open('https://github.com/dagrimm', '_blank', 'noopener'); say(''); },
+                linkedin: function () { window.open('https://de.linkedin.com/in/david-grimm-8577651bb', '_blank', 'noopener'); say(''); },
+                clear: function () { say(''); }
+            };
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                var words = input.value.trim().toLowerCase().split(/\s+/);
+                input.value = '';
+                if (!words[0]) { say(''); return; }
+                if (Object.prototype.hasOwnProperty.call(commands, words[0])) { commands[words[0]](words[1]); return; }
+                if (words[0] === 'sudo') { say('david is not in the sudoers file.\nTry: mail'); return; }
+                say(words[0] + ': command not found. Type help for the list.');
+            });
+
+            input.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') { input.value = ''; say(''); input.blur(); }
+                if (e.key === 'Tab' && input.value.trim()) {
+                    var typedWord = input.value.trim().toLowerCase();
+                    var hits = Object.keys(commands).filter(function (name) { return name.indexOf(typedWord) === 0; });
+                    if (hits.length === 1) { e.preventDefault(); input.value = hits[0] + ' '; }
+                    else if (hits.length > 1) { e.preventDefault(); say(hits.join('  ')); }
+                }
+            });
+
+            document.addEventListener('keydown', function (e) {
+                var field = document.activeElement && document.activeElement.tagName === 'INPUT';
+                if (!field && !e.metaKey && !e.ctrlKey && !e.altKey && (e.key === ':' || e.key === '/')) {
+                    e.preventDefault();
+                    input.focus();
+                }
+            });
         })();
     </script>
 </body>
