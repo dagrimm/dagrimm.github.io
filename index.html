@@ -19,6 +19,7 @@
 
     <main class="flow">
         <svg class="wire" aria-hidden="true"><path class="wire-track"></path><path class="wire-live"></path></svg>
+        <div class="wire-fill" aria-hidden="true"></div>
 
         <section class="stop at-a intro" id="about">
             <span class="port"></span>
@@ -117,13 +118,18 @@
             var svg = flow.querySelector('.wire');
             var track = flow.querySelector('.wire-track');
             var live = flow.querySelector('.wire-live');
+            var fill = flow.querySelector('.wire-fill');
             var ports = Array.prototype.slice.call(flow.querySelectorAll('.port'));
             var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             var length = 0, points = [], ticking = false;
+            var flowTop = 0, viewHeight = 0, viewWidth = 0, litPorts = 0, straight = false;
 
             /* Right-angled run from port to port, with the jog just above the next one. */
             function route() {
                 var box = flow.getBoundingClientRect();
+                flowTop = box.top + window.scrollY;
+                viewHeight = window.innerHeight;
+                viewWidth = window.innerWidth;
                 svg.setAttribute('width', box.width);
                 svg.setAttribute('height', box.height);
                 points = ports.map(function (port) {
@@ -145,25 +151,38 @@
                 live.setAttribute('d', d);
                 length = live.getTotalLength();
                 live.style.strokeDasharray = length;
+                straight = points.every(function (p) { return p.x === points[0].x; });
+                fill.style.left = (points[0].x - 1.5) + 'px';
+                fill.style.height = points[points.length - 1].y + 'px';
                 draw();
             }
 
             function draw() {
                 ticking = false;
-                var box = flow.getBoundingClientRect();
-                var front = reduce ? Infinity : window.innerHeight * 0.68 - box.top;
+                var front = reduce ? Infinity : viewHeight * 0.68 + window.scrollY - flowTop;
                 var last = points[points.length - 1];
                 var share = Math.max(0, Math.min(1, front / last.y));
-                live.style.strokeDashoffset = length * (1 - share);
-                points.forEach(function (p, i) {
-                    ports[i].classList.toggle('is-lit', p.y <= front);
-                });
+                if (straight) {
+                    fill.style.transform = 'scaleY(' + share + ')';
+                } else {
+                    live.style.strokeDashoffset = length * (1 - share);
+                }
+                /* Only touch the ports that changed state. */
+                while (litPorts < ports.length && points[litPorts].y <= front) {
+                    ports[litPorts++].classList.add('is-lit');
+                }
+                while (litPorts > 0 && points[litPorts - 1].y > front) {
+                    ports[--litPorts].classList.remove('is-lit');
+                }
             }
 
             window.addEventListener('scroll', function () {
                 if (!ticking) { ticking = true; requestAnimationFrame(draw); }
             }, { passive: true });
-            window.addEventListener('resize', route);
+            /* Phones fire resize as the address bar slides; only a width change moves the ports. */
+            window.addEventListener('resize', function () {
+                if (window.innerWidth !== viewWidth) { route(); }
+            });
             if (document.fonts && document.fonts.ready) { document.fonts.ready.then(route); }
             route();
         })();

@@ -16,10 +16,10 @@
 
 html { background-color: var(--paper); }
 
-/* Uncoated stock: long fibres plus fine grain, in one tile painted once. */
+/* Uncoated stock: a pre-rendered tile, far cheaper on phones than an SVG filter. */
 body {
     min-height: 100vh;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='360'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.04 .16' numOctaves='3' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .2 0 0 0 0 .2 0 0 0 0 .19 0 0 0 .6 -.24'/%3E%3C/filter%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .2 0 0 0 0 .2 0 0 0 0 .19 0 0 0 .6 -.22'/%3E%3C/filter%3E%3Crect width='360' height='360' filter='url(%23f)' opacity='.13'/%3E%3Crect width='360' height='360' filter='url(%23g)' opacity='.4'/%3E%3C/svg%3E");
+    background-image: url('../assets/paper.webp');
 }
 
 body {
@@ -98,6 +98,10 @@ h1 {
 .wire-live {
     stroke: var(--signal);
     stroke-width: 3;
+}
+
+.wire-fill {
+    display: none;
 }
 
 .port {
@@ -282,6 +286,21 @@ h1 {
     .intro { margin-top: 0; }
 
     .case { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+
+    /* The line is straight here, so a scaled bar replaces the SVG stroke: the
+       compositor moves it without repainting a page-tall layer on each frame. */
+    .wire-live { display: none; }
+
+    .wire-fill {
+        display: block;
+        position: absolute;
+        top: 0;
+        width: 3px;
+        background: var(--signal);
+        transform: scaleY(0);
+        transform-origin: top;
+        will-change: transform;
+    }
 }
 
 @media (max-width: 480px) {
