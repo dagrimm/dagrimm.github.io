@@ -618,13 +618,16 @@ img { display: block; }
         background: radial-gradient(70% 34% at 50% 80%, rgba(253, 137, 37, 0.1), transparent 72%);
     }
 
-    /* The waves get their own band under the headline. */
+    /* The waves get their own band under the headline, short enough that the
+       about pane and its portrait still show on the first screen. */
+    .hero { --band: min(58vw, 300px); }
+
     .waves {
         inset: auto 0 0 0;
-        height: min(84vw, 440px);
+        height: var(--band);
     }
 
-    .hero-inner { padding: 28px var(--gutter) calc(min(84vw, 440px) + 16px); }
+    .hero-inner { padding: 28px var(--gutter) calc(var(--band) + 8px); }
 
     .hero h1 { font-size: clamp(1.5rem, 6.4vw, 2.5rem); }
 
